@@ -10,6 +10,7 @@
                 This is the table
             </div>
         </div>
+        <FooterVue style="bottom:0"/>
     </div>
 </template>
 
@@ -17,10 +18,11 @@
 import { defineComponent } from 'vue';
 import MainBar from '@/components/MainBar.vue';
 import TransitorieBar from '@/components/TransitorieBar.vue';
+import FooterVue from '@/components/FooterVue.vue';
 
 export default defineComponent({
     name:'MainPageView',
-    components: {MainBar, TransitorieBar},
+    components: {MainBar, TransitorieBar, FooterVue},
     data() {
         return {
 
