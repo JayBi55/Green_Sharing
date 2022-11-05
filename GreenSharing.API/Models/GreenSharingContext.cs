@@ -12,6 +12,24 @@ namespace GreenSharing.API.Models
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //Logger.InfoFormat("Configuring DbContext");
+            //optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["GreenSharingContext"].ConnectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //TODO: Find how to avoid this ...or automate this !!!
+            //TODO: See: https://github.com/aspnet/EntityFrameworkCore/issues/3815
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().Where(e => !e.IsOwned()).SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+        }
+
         public DbSet<AccountType> AccountType { get; set; }
         public DbSet<Account> Account { get; set; }
         public DbSet<Farmer> Farmer { get; set; }
