@@ -528,7 +528,8 @@ namespace GreenSharing.API.Migrations
                 {
                     b.HasOne("GreenSharing.API.Models.AccountType", "AccountType")
                         .WithMany()
-                        .HasForeignKey("AccountTypeId1");
+                        .HasForeignKey("AccountTypeId1")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("AccountType");
                 });
@@ -538,7 +539,7 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany("AccountLocations")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -549,7 +550,7 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -560,13 +561,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.BankFood", "BankFood")
                         .WithMany()
                         .HasForeignKey("BankFoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Product", "Produit")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("BankFood");
@@ -579,13 +580,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.BankFood", "BankFood")
                         .WithMany()
                         .HasForeignKey("BankFoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -598,13 +599,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.EventPriority", "EventPriority")
                         .WithMany()
                         .HasForeignKey("EventPriorityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.FarmerProduct", "FarmerProduct")
                         .WithMany()
                         .HasForeignKey("FarmerProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("EventPriority");
@@ -617,13 +618,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -636,13 +637,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Event", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Gleaner", "Gleaner")
                         .WithMany()
                         .HasForeignKey("GleanerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Event");
@@ -655,7 +656,7 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -666,13 +667,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Farmer", "Farmer")
                         .WithMany()
                         .HasForeignKey("FarmerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Farmer");
@@ -685,13 +686,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Farmer", "Farmer")
                         .WithMany()
                         .HasForeignKey("FarmerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -704,7 +705,7 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -715,13 +716,13 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GreenSharing.API.Models.Gleaner", "Gleaner")
                         .WithMany()
                         .HasForeignKey("GleanerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -734,7 +735,7 @@ namespace GreenSharing.API.Migrations
                     b.HasOne("GreenSharing.API.Models.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ProductType");

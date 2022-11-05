@@ -97,7 +97,7 @@ namespace GreenSharing.API.Migrations
                         column: x => x.ProductTypeId,
                         principalTable: "ProductType",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,7 +121,7 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -142,7 +142,7 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,7 +163,7 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,7 +185,7 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,13 +208,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.BankFoodId,
                         principalTable: "BankFood",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BankFoodProductConsumable_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -235,13 +235,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BankFoodReview_BankFood_BankFoodId",
                         column: x => x.BankFoodId,
                         principalTable: "BankFood",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,13 +263,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.FarmerId,
                         principalTable: "Farmer",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FarmerProduct_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -290,13 +290,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountID,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FarmerReview_Farmer_FarmerID",
                         column: x => x.FarmerID,
                         principalTable: "Farmer",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -317,13 +317,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GleanerReview_Gleaner_GleanerId",
                         column: x => x.GleanerId,
                         principalTable: "Gleaner",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -354,13 +354,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.EventPriorityId,
                         principalTable: "EventPriority",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Event_FarmerProduct_FarmerProductId",
                         column: x => x.FarmerProductId,
                         principalTable: "FarmerProduct",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -381,13 +381,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EventReview_Event_EventId",
                         column: x => x.EventId,
                         principalTable: "Event",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -409,13 +409,13 @@ namespace GreenSharing.API.Migrations
                         column: x => x.EventId,
                         principalTable: "Event",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EventSubscription_Gleaner_GleanerId",
                         column: x => x.GleanerId,
                         principalTable: "Gleaner",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
