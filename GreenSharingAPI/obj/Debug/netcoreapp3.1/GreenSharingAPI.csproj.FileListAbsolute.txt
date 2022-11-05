@@ -89,4 +89,3 @@ M:\NetsenGroup\Code\Green_Sharing\GreenSharingAPI\obj\Debug\netcoreapp3.1\GreenS
 M:\NetsenGroup\Code\Green_Sharing\GreenSharingAPI\obj\Debug\netcoreapp3.1\GreenSharingAPI.dll
 M:\NetsenGroup\Code\Green_Sharing\GreenSharingAPI\obj\Debug\netcoreapp3.1\GreenSharingAPI.pdb
 M:\NetsenGroup\Code\Green_Sharing\GreenSharingAPI\obj\Debug\netcoreapp3.1\GreenSharingAPI.genruntimeconfig.cache
-M:\NetsenGroup\Code\Green_Sharing\GreenSharingAPI\obj\Debug\netcoreapp3.1\GreenSharingAPI.csproj.AssemblyReference.cache
