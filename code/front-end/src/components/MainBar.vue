@@ -1,9 +1,9 @@
 <template>
     <div class=" main-bar p-3 d-flex justify-content-between w-100">
-        <img src="@/assets/logoo.jpg" alt="warning" class="logo"/>
+        <img src="@/assets/Free_Sample_Logo.jpg" alt="warning" class="logo"/>
         <h2 class="ecriture align-self-center">Green Sharing</h2>
         <div  class="logo-sign" @click="redirectSignIn">
-            <img src="@/assets/login-logo.png" alt="warning" class="logo"/><br/>
+            <img src="@/assets/images_logo.png" alt="warning" class="logo"/><br/>
             <span class="ms-4">{{whoIsThere}}</span>
         </div>
         
@@ -42,11 +42,11 @@ export default defineComponent({
 
 <style>
 .main-bar {
-    background-color: #a6c4e1;
+    background-color: #142530;
     position: sticky;
     z-index: 1;
     top: 0;
-    box-shadow: 5px 10px #000023;
+    box-shadow: 0px 10px #000023;
 }
 
 .logo-sign {
@@ -62,6 +62,9 @@ export default defineComponent({
 .ecriture {
     line-height: 18px;
     font-size: 60px;
-    font-family: Roboto;
+    /*font-family: Roboto;*/
+    color: white;
+    font-family: cursive , sans-serif;
 }
+
 </style>
