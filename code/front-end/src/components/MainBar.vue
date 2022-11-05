@@ -26,14 +26,21 @@ export default defineComponent({
     computed:{
         whoIsThere(){
             if(this.userStore.userId) {
-                return this.userStore.userName
+                return 'Log out'
             }
             return 'Login'
         }
     },
     methods: {
         redirectSignIn() {
-            this.$router.push({name:'login'})
+            if(!this.userStore.userId){
+                this.$router.push({name:'login'})
+            }
+            else{
+                this.userStore.$reset()
+                this.$router.push({name:'login'})
+            }
+            
         }
     }
 

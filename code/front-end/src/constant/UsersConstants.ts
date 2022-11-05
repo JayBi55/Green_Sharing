@@ -16,6 +16,12 @@ export const userConstants = [
     userId: '34567',
     userType: 'Benevole',
     userPassword: 'morganstanley',
+  },  
+  {
+    name: 'Pierre Emile',
+    userId: 'pierre01',
+    userType: 'Farmer',
+    userPassword:'pierre01'
   }
 ];
   
