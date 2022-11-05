@@ -1,6 +1,7 @@
 <template>
     <div class="login-css w-100 h-100">
         <div class="container">
+          <img src="@/assets/Free_Sample_Logo.jpg" alt="warning" class="logo"/>
           <h1>Green Sharing</h1>
           <hr>
           <div class="row ms-5">
@@ -74,7 +75,11 @@ export default defineComponent({
 }
 h1{
   text-align: center;
-  color: black;
+  line-height: 18px;
+  font-size: 60px;
+    /*font-family: Roboto;*/
+  color: white;
+  font-family: cursive , sans-serif;
 }
 
 /* Add padding to containers */
@@ -107,8 +112,8 @@ hr {
 
 /* Set a style for the submit/register button */
 .registerbtn {
-  background-color: #003778;
-  color: black;
+  background-color: #142530;
+  color: white;
   border: solid;
   cursor: pointer;
   width: 10%;
@@ -129,7 +134,7 @@ a {
 }
 
 .label-css {
-  color: black;
+  color: white;
 }
 
 </style>
