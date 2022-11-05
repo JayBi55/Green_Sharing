@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jeanne Audrey Mboua\\Documents\\GitHub\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj": {}
+    "M:\\NetsenGroup\\Code\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jeanne Audrey Mboua\\Documents\\GitHub\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj": {
+    "M:\\NetsenGroup\\Code\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jeanne Audrey Mboua\\Documents\\GitHub\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj",
+        "projectUniqueName": "M:\\NetsenGroup\\Code\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj",
         "projectName": "GreenSharingAPI",
-        "projectPath": "C:\\Users\\jeanne Audrey Mboua\\Documents\\GitHub\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj",
-        "packagesPath": "C:\\Users\\jeanne Audrey Mboua\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jeanne Audrey Mboua\\Documents\\GitHub\\Green_Sharing\\GreenSharingAPI\\obj\\",
+        "projectPath": "M:\\NetsenGroup\\Code\\Green_Sharing\\GreenSharingAPI\\GreenSharingAPI.csproj",
+        "packagesPath": "C:\\Users\\marcel\\.nuget\\packages\\",
+        "outputPath": "M:\\NetsenGroup\\Code\\Green_Sharing\\GreenSharingAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jeanne Audrey Mboua\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\marcel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -28,6 +29,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,6 +115,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.18, 3.1.18]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -121,7 +129,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

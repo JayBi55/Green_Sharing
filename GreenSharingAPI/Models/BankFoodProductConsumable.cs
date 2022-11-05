@@ -16,7 +16,7 @@ namespace GreenSharingAPI.Models
         public Guid BankFoodID { get; set; }
         public Guid ProductID { get; set; }
 
-        public virtual Produit Produit{ get; set; }
+        public virtual Product Produit{ get; set; }
         public virtual BankFood BankFood { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace GreenSharingAPI.Models
         public string Comment { get; set; }
         public DateTime Date { get; set; }
         //FK
-        public Guid BankFoodID { get; set; }
-        public Guid AccountID { get; set; }
+        public Guid BankFoodId { get; set; }
+        public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
         public virtual BankFood BankFood { get; set; }
     }

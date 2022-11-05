@@ -15,8 +15,7 @@ namespace GreenSharingAPI.Models
         public string disponibilité_bankFood { get; set; }
         public int distance_max { get; set; }
         //FK
-        public Guid accountID { get; set; }
+        public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
     }
-}
 }

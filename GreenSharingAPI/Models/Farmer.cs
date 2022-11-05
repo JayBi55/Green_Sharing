@@ -9,9 +9,10 @@ namespace GreenSharingAPI.Models
     {
         public Guid Id { get; set; }
         public string FarmName { get; set; }
-        public DateTime dispo_farmer { get; set; }
+        public DateTime Availability { get; set; }
+
         //FK
-        public Guid  accountID { get; set; }
+        public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
     }
 }
