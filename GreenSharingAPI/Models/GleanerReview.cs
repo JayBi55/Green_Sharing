@@ -10,12 +10,11 @@ namespace GreenSharingAPI.Models
         public DateTime Date { get; set; }
 
         //FK
-        public Guid FarmerID { get; set; }
-        public virtual Farmer Farmer { get; set; }
+        public Guid GleanerId { get; set; }
+        public virtual Gleaner Gleaner { get; set; }
 
-        public Guid AccountID { get; set; }
-        public virtual Account Account { get; set; }
-        
+        public Guid AccountId { get; set; }
+        public virtual Account Account { get; set; }        
     }
 }
 

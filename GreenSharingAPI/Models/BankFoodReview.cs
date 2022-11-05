@@ -10,6 +10,7 @@ namespace GreenSharingAPI.Models
         public Guid Id { get; set; }
         public string Comment { get; set; }
         public DateTime Date { get; set; }
+
         //FK
         public Guid BankFoodId { get; set; }
         public Guid AccountId { get; set; }

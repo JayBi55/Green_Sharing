@@ -53,7 +53,7 @@ namespace GreenSharingAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "GreenSharingAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "GreenSharing.API", Version = "v1" });
                 c.OperationFilter<SwashbuckleOperationFilter>();
             });
         }
@@ -61,7 +61,7 @@ namespace GreenSharingAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            //Creer ou Mettre a jour la BD
             ApplyMigration<GreenSharingContext>(app);
 
             if (env.IsDevelopment())
@@ -72,7 +72,7 @@ namespace GreenSharingAPI
             app.UseOpenApi();
             app.UseSwaggerUI();
 
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreenSharingAPI v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreenSharing.API v1"));
 
             app.UseHttpsRedirection();
 

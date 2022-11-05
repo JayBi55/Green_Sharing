@@ -9,12 +9,13 @@ namespace GreenSharingAPI.Models
     {
         public Guid Id { get; set; }
         public string Notes { get; set; }
-        public string Quantity { get; set; }
+        public long Quantity { get; set; }
         public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
+
         //FK
-        public Guid BankFoodID { get; set; }
-        public Guid ProductID { get; set; }
+        public Guid BankFoodId { get; set; }
+        public Guid ProductId { get; set; }
 
         public virtual Product Produit{ get; set; }
         public virtual BankFood BankFood { get; set; }

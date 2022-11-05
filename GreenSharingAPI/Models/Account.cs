@@ -17,7 +17,14 @@ namespace GreenSharingAPI.Models
         public string LastName { get; set; }
         public string SurName { get; set; }
 
+        public DateTime CreationDate { get; set; }
+        public DateTime? DisabledDate { get; set; }
+        public DateTime? ConsentDate { get; set; }
+
         public Guid AccountTypeId { get; set; }
         public virtual AccountType AccountType { get; set; }
+
+
+        public virtual IList<AccountLocation> AccountLocations { get; set; } = new List<AccountLocation>();
     }
 }

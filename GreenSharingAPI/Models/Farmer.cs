@@ -8,7 +8,8 @@ namespace GreenSharingAPI.Models
     public class Farmer
     {
         public Guid Id { get; set; }
-        public string FarmName { get; set; }
+        public string Name { get; set; }
+        public string Notes { get; set; }
         public DateTime Availability { get; set; }
 
         //FK
