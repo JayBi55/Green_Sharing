@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ff8f47b2-b2e4-49e0-ab66-e39e8d150e41")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("GreenSharingAPI")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Morgan Stanley")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]

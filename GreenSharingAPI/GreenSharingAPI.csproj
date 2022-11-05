@@ -5,6 +5,9 @@
     <UserSecretsId>ff8f47b2-b2e4-49e0-ab66-e39e8d150e41</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Morgan Stanley</Company>
+    <StartupObject>GreenSharingAPI.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
