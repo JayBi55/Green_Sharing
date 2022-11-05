@@ -23,10 +23,18 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {useUserStore} from '@/stores/user'
+import { userConstants }  from '@/constant/UsersConstants'
 
 export default defineComponent({
     name:'LogInView',
-
+  setup() {
+    const userStore = useUserStore();
+    return {
+      userStore,
+      userConstants
+    }
+  },
     data() {
         return {
           userId: '',
@@ -35,7 +43,22 @@ export default defineComponent({
     },
     methods: {
       login() {
-        console.log(this.userId, this.password)
+        // found
+        const user = this.userConstants.find(el => 
+          el.userId === this.userId && el.userPassword === this.password)
+        
+        if(user) {
+          this.userStore.userId = user.userId;
+          this.userStore.userName = user.name;
+          this.userStore.userType = user.userType;
+          this.userStore.userPassword = user.userPassword
+          this.$router.push({name:'home'}, );
+          // clear donnes
+          this.userId=''
+          this.password=''
+        }
+        this.userId=''
+        this.password=''
       }
     }
 })
