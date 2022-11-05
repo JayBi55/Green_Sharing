@@ -1,5 +1,5 @@
 <template>
-    <div class="login-css w-100">
+    <div class="login-css w-100 h-100">
         <div class="container">
           <h1>Green Sharing</h1>
           <hr>
@@ -47,9 +47,11 @@ export default defineComponent({
 
 .login-css{
   background-image: url(../images/backgroundLogIn.jpg);
+  background-size: cover;
 }
 h1{
   text-align: center;
+  color: black;
 }
 
 /* Add padding to containers */
