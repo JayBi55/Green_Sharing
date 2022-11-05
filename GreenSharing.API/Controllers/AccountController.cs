@@ -65,26 +65,40 @@ namespace GreenSharing.API.Controllers
 
         // GET api/<AccountController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(Account), 200)]
+        [ProducesResponseType(typeof(void), 400)]
+        public async Task<IActionResult> GetAsync(Guid accountId)
         {
-            return "value";
+            Account account ;
+            try
+            {
+                account = await _context.Account.FirstOrDefaultAsync(x => x.Id == accountId);
+            }
+            catch (Exception e)
+
+            {
+                return BadRequest(e);
+            }
+
+            return Ok(account);
         }
 
         // POST api/<AccountController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Account account)
         {
         }
 
         // PUT api/<AccountController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] Account account)
         {
         }
 
         // DELETE api/<AccountController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid accountId)
         {
         }
     }
