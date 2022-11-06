@@ -7,9 +7,9 @@ namespace GreenSharing.API.Repositories.DataAccessLayer.Models
     [Table("AccountType", Schema = "identity")]
     public class AccountType
     {
-        public static readonly Guid Farmer   = new Guid("35049D72-C586-4BED-92B0-918FD61CA92E");
-        public static readonly Guid BankFood = new Guid("9EFCC1A2-DDF1-4AC4-B1D4-0E406A3BB6F3");
-        public static readonly Guid Gleaner  = new Guid("E406461D-D732-4F4F-917F-A69128CB0599");
+        public static readonly Guid FarmerId = new Guid("35049D72-C586-4BED-92B0-918FD61CA92E");
+        public static readonly Guid BankFoodId = new Guid("9EFCC1A2-DDF1-4AC4-B1D4-0E406A3BB6F3");
+        public static readonly Guid GleanerId = new Guid("E406461D-D732-4F4F-917F-A69128CB0599");
 
         public Guid Id { get; set; }
         public string Name { get; set; }

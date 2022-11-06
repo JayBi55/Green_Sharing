@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreenSharing.API.Migrations
 {
     [DbContext(typeof(GreenSharingContext))]
-    [Migration("20221106162651_InitialCreate")]
+    [Migration("20221106204910_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FaxNumber")
                         .HasColumnType("nvarchar(max)");
@@ -73,11 +73,19 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("UserName")
+                        .IsUnique()
+                        .HasFilter("[UserName] IS NOT NULL");
 
                     b.ToTable("Account", "identity");
 
@@ -86,7 +94,7 @@ namespace GreenSharing.API.Migrations
                         {
                             Id = new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"),
                             AccountTypeId = new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 599, DateTimeKind.Utc).AddTicks(8183),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 346, DateTimeKind.Utc).AddTicks(971),
                             Email = "farmer@yopmail.com",
                             FirstName = "Farmer",
                             IsActive = true,
@@ -94,14 +102,14 @@ namespace GreenSharing.API.Migrations
                             IsDeleted = false,
                             IsEnabled = true,
                             LastName = "John Doe",
-                            Password = "AQAAAAEAACcQAAAAEHMVfNL7GupjKVl8xjchtsGCND9SV6S6EzTm41zaj6gjH6jmA6Jv3qc5TjdR67896Q==",
+                            Password = "AQAAAAEAACcQAAAAEAxBcWKtdM3s6Z/0uO95tjAsOrvXe4y2EsX3hdxtcehCFAWWTNuaNaG0vTWqDyzuqA==",
                             SurName = "Big J."
                         },
                         new
                         {
                             Id = new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"),
                             AccountTypeId = new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 615, DateTimeKind.Utc).AddTicks(9349),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 355, DateTimeKind.Utc).AddTicks(1620),
                             Email = "bankFood@yopmail.com",
                             FirstName = "Moisson Montreal",
                             IsActive = true,
@@ -109,14 +117,14 @@ namespace GreenSharing.API.Migrations
                             IsDeleted = false,
                             IsEnabled = true,
                             LastName = "Moisson Montreal",
-                            Password = "AQAAAAEAACcQAAAAECIVpujxvgWSK2X/MUw+s1WQ2/lJt+vN1ut9ccjWdXJoAUZMW6TEFJ1myEDfzbgZig==",
+                            Password = "AQAAAAEAACcQAAAAEIUNOKQUptJeZTBmOTTXRP9Yx49wiufSZyPbjPzBiphCwRZ+PvNbc2kykI3NNlxE+w==",
                             SurName = "Give Back to Community"
                         },
                         new
                         {
                             Id = new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"),
                             AccountTypeId = new Guid("e406461d-d732-4f4f-917f-a69128cb0599"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 631, DateTimeKind.Utc).AddTicks(2165),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 363, DateTimeKind.Utc).AddTicks(3808),
                             Email = "gleaner@yopmail.com",
                             FirstName = "Gleaner",
                             IsActive = true,
@@ -124,7 +132,7 @@ namespace GreenSharing.API.Migrations
                             IsDeleted = false,
                             IsEnabled = true,
                             LastName = "Jeanette Odu",
-                            Password = "AQAAAAEAACcQAAAAEMC6naV95dk3wSKXQO8B4taUGQ2LPFudm9nY7gPuRwbmebsg/PPoY5v8BgsR3GTodw==",
+                            Password = "AQAAAAEAACcQAAAAEG1QiDze9hfweQkiDKeQqWO/0aOJdgfBbA1/ivwIxcJBlId2O3GPQZdxaPqmmf6Yow==",
                             SurName = "Jeane"
                         });
                 });
@@ -140,6 +148,11 @@ namespace GreenSharing.API.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AddressTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("7b22ddb4-48b0-456d-8ada-ec438b8df9b1"));
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -177,6 +190,8 @@ namespace GreenSharing.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
+
+                    b.HasIndex("AddressTypeId");
 
                     b.ToTable("AccountLocation", "location");
                 });
@@ -218,6 +233,43 @@ namespace GreenSharing.API.Migrations
                     b.HasIndex("OAuthProviderId");
 
                     b.ToTable("AccountOAuth", "identity");
+                });
+
+            modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AccountPassword", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ClosingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("AccountPassword", "identity");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AccountSession", b =>
@@ -287,12 +339,16 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("NameKey")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("AccountType", "identity");
 
@@ -300,7 +356,7 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2397),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 76, DateTimeKind.Utc).AddTicks(4222),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Farmer",
@@ -309,7 +365,7 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2838),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 76, DateTimeKind.Utc).AddTicks(4893),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "BankFood",
@@ -318,12 +374,41 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("e406461d-d732-4f4f-917f-a69128cb0599"),
-                            CreationDate = new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2844),
+                            CreationDate = new DateTime(2022, 11, 6, 20, 49, 9, 76, DateTimeKind.Utc).AddTicks(4901),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Gleaner",
                             NameKey = "Gleaner"
                         });
+                });
+
+            modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AddressType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DisabledDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AddressType", "location");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.BankFood", b =>
@@ -482,7 +567,7 @@ namespace GreenSharing.API.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Capacity")
+                    b.Property<long>("CarpoolingPlaces")
                         .HasColumnType("bigint");
 
                     b.Property<string>("City")
@@ -503,6 +588,9 @@ namespace GreenSharing.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Door")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("Duration")
                         .HasColumnType("bigint");
 
@@ -512,11 +600,22 @@ namespace GreenSharing.API.Migrations
                     b.Property<Guid>("FarmerProductId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<long>("GleanedQuantity")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCarpoolingEnabled")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<long>("MinimumCapacity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(5L);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -525,6 +624,12 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -543,7 +648,7 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -555,6 +660,10 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasFilter("[Code] IS NOT NULL");
 
                     b.ToTable("EventPriority");
 
@@ -842,9 +951,13 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("OAuthProvider", "identity");
 
@@ -913,12 +1026,16 @@ namespace GreenSharing.API.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("ProductType");
 
@@ -968,7 +1085,15 @@ namespace GreenSharing.API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("GreenSharing.API.Repositories.DataAccessLayer.Models.AddressType", "AddressType")
+                        .WithMany()
+                        .HasForeignKey("AddressTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Account");
+
+                    b.Navigation("AddressType");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AccountOAuth", b =>
@@ -988,6 +1113,25 @@ namespace GreenSharing.API.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("OAuthProvider");
+                });
+
+            modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AccountPassword", b =>
+                {
+                    b.HasOne("GreenSharing.API.Repositories.DataAccessLayer.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GreenSharing.API.Repositories.DataAccessLayer.Models.Account", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Repositories.DataAccessLayer.Models.AccountSession", b =>
