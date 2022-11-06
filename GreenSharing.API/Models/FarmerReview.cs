@@ -10,9 +10,18 @@ namespace GreenSharing.API.Models
         public Guid Id { get; set; }
         public string Comment { get; set; }
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Score que la persone donne au Farmer
+        /// </summary>
+        public long Score { get; set; }
+
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         //FK
-        public Guid FarmerID { get; set; }
-        public Guid AccountID { get; set; }
+        public Guid FarmerId { get; set; }
+        public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
         public virtual Farmer Farmer{ get; set; }
     }

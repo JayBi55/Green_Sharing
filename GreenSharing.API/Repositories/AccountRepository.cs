@@ -11,16 +11,20 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories
 {
-    public  class AccountStore : GenericStore<Account>, IAccountStore
+    public  class AccountRepository : GenericRepository<Account>, IAccountRepository
     {
         public PasswordHasher<string> passwordHasser = new PasswordHasher<string>();
 
-        public AccountStore(GreenSharingContext context) : base(context)
+        public AccountRepository(GreenSharingContext context) : base(context)
         {
 
         }
 
-        //CreateNewAccount
+        /// <summary>
+        /// CreateAsync
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         new public Task<int> CreateAsync(Account account)
         {
             try
@@ -29,6 +33,7 @@ namespace GreenSharing.API.Repositories
                 account.CreationDate = DateTime.UtcNow;
                 account.IsActive = true;
                 account.IsEnabled = false;
+                account.IsConsentAccepted = true;
 
                 return base.CreateAsync(account);
             }
@@ -66,7 +71,7 @@ namespace GreenSharing.API.Repositories
 
             try
             {
-                account = await FindAsync(c => c.Email == loginDto.Email && c.IsActive &&!c.IsDeleted /*&& c.IsEnabled & c.IsConsentAccepted*/);
+                account = await FindAsync(c => c.Email == loginDto.Email && c.IsActive && !c.IsDeleted /*&& c.IsEnabled & c.IsConsentAccepted*/);
                 bool passwordValidation = false;
                 if (account != null)
                 {
@@ -78,7 +83,8 @@ namespace GreenSharing.API.Repositories
                     //An account will now be associated with the event.
                     //TODO:
                 }
-                else {
+                else 
+                {
                     //Manage 
                 }
             }
@@ -108,7 +114,6 @@ namespace GreenSharing.API.Repositories
 
             return entities;
         }
-
         public bool VerifiedHashedPassword(Account account, string password)
         {
             PasswordVerificationResult verification = passwordHasser.VerifyHashedPassword(account.Id.ToString(), account.Password, password);

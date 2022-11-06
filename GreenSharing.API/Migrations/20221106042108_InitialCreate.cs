@@ -17,13 +17,13 @@ namespace GreenSharing.API.Migrations
                 name: "AccountType",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ClosingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,9 @@ namespace GreenSharing.API.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +51,9 @@ namespace GreenSharing.API.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,15 +81,14 @@ namespace GreenSharing.API.Migrations
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DisabledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ConsentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AccountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AccountTypeId1 = table.Column<long>(type: "bigint", nullable: true)
+                    AccountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Account", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Account_AccountType_AccountTypeId1",
-                        column: x => x.AccountTypeId1,
+                        name: "FK_Account_AccountType_AccountTypeId",
+                        column: x => x.AccountTypeId,
                         principalTable: "AccountType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -98,6 +101,8 @@ namespace GreenSharing.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     ProductTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -123,6 +128,8 @@ namespace GreenSharing.API.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     Longtitude = table.Column<double>(type: "float", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -146,6 +153,8 @@ namespace GreenSharing.API.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Availability = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DistanceMax = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -169,6 +178,8 @@ namespace GreenSharing.API.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Availability = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -190,9 +201,9 @@ namespace GreenSharing.API.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DistanceMax = table.Column<long>(type: "bigint", nullable: false),
-                    Score = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -216,6 +227,8 @@ namespace GreenSharing.API.Migrations
                     Quantity = table.Column<long>(type: "bigint", nullable: false),
                     DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     BankFoodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -244,6 +257,9 @@ namespace GreenSharing.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Score = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     BankFoodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -274,6 +290,8 @@ namespace GreenSharing.API.Migrations
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -302,22 +320,25 @@ namespace GreenSharing.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FarmerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AccountID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Score = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    FarmerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FarmerReview", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FarmerReview_Account_AccountID",
-                        column: x => x.AccountID,
+                        name: "FK_FarmerReview_Account_AccountId",
+                        column: x => x.AccountId,
                         principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FarmerReview_Farmer_FarmerID",
-                        column: x => x.FarmerID,
+                        name: "FK_FarmerReview_Farmer_FarmerId",
+                        column: x => x.FarmerId,
                         principalSchema: "identity",
                         principalTable: "Farmer",
                         principalColumn: "Id",
@@ -331,6 +352,9 @@ namespace GreenSharing.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Score = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     GleanerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -370,6 +394,8 @@ namespace GreenSharing.API.Migrations
                     Contact = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Capacity = table.Column<long>(type: "bigint", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FarmerProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EventPriorityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -397,6 +423,8 @@ namespace GreenSharing.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -426,6 +454,8 @@ namespace GreenSharing.API.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Carpooling = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     EventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GleanerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -447,11 +477,60 @@ namespace GreenSharing.API.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Account_AccountTypeId1",
+            migrationBuilder.InsertData(
+                table: "AccountType",
+                columns: new[] { "Id", "ClosingDate", "CreationDate", "IsActive", "IsDeleted", "Name", "NameKey" },
+                values: new object[,]
+                {
+                    { new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(7604), true, false, "Farmer", "Farmer" },
+                    { new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8001), true, false, "BankFood", "BankFood" },
+                    { new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8006), true, false, "Gleaner", "Gleaner" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EventPriority",
+                columns: new[] { "Id", "Code", "IsActive", "IsDeleted", "Notes" },
+                values: new object[,]
+                {
+                    { new Guid("2ed145ee-4231-4b52-a97a-2d89442a8742"), "RED", true, false, "Urgent" },
+                    { new Guid("1dedacaa-28f1-45fe-ad06-5e28a7a8e5d2"), "ORANGE", true, false, "Medium" },
+                    { new Guid("77d86c1f-ffd7-49c4-ac5a-df4f7f054517"), "YELLOW", true, false, "Moderate" },
+                    { new Guid("0f824a56-5507-4dd2-b694-879d2edfe36c"), "VERT", true, false, "Normal" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductType",
+                columns: new[] { "Id", "IsActive", "IsDeleted", "Name", "Notes" },
+                values: new object[,]
+                {
+                    { new Guid("c5a7d3a5-365d-4cba-a48e-1bbf6f39fdad"), true, false, "Vegetable", "Vegetable" },
+                    { new Guid("b57f1520-9f64-4442-8414-a2b2dfdb8d13"), true, false, "Animal", "Animal" },
+                    { new Guid("37183ebb-9c7f-41e8-8b55-3bf292a37c25"), true, false, "Other", "Other" }
+                });
+
+            migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Account",
-                column: "AccountTypeId1");
+                columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
+                values: new object[] { new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"), new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 4, 21, 3, 51, DateTimeKind.Utc).AddTicks(7031), null, "farmer@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEO0QSF1ED2xyX8BN2YMtLjWTs/iTLE7FWcL50CCp6Jd9ODa9BFrNscjD5qcQB/M8rQ==", null, null, null });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Account",
+                columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
+                values: new object[] { new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"), new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 4, 21, 3, 97, DateTimeKind.Utc).AddTicks(6574), null, "bankFood@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEDdSUJILLJEzF9rPNi1v3sOMTMyKxnCKDsLiEnwlD1B3Xg/zl7NGe6XaNrPQObfFWw==", null, null, null });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Account",
+                columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
+                values: new object[] { new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"), new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 4, 21, 3, 244, DateTimeKind.Utc).AddTicks(8971), null, "gleaner@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEGdGGMqXlEt/UPZccg/kDqkgdzgBGC17M4JtABOAzLIjnQ/HKqBl0qQQQ9pof6aV8Q==", null, null, null });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Account_AccountTypeId",
+                schema: "identity",
+                table: "Account",
+                column: "AccountTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountLocation_AccountId",
@@ -532,14 +611,14 @@ namespace GreenSharing.API.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FarmerReview_AccountID",
+                name: "IX_FarmerReview_AccountId",
                 table: "FarmerReview",
-                column: "AccountID");
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FarmerReview_FarmerID",
+                name: "IX_FarmerReview_FarmerId",
                 table: "FarmerReview",
-                column: "FarmerID");
+                column: "FarmerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gleaner_AccountId",

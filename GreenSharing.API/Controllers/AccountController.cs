@@ -1,5 +1,7 @@
 ﻿using GreenSharing.API.Dtos;
 using GreenSharing.API.Models;
+using GreenSharing.API.Repositories;
+using GreenSharing.API.Repositories.Interface;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,15 +22,16 @@ namespace GreenSharing.API.Controllers
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AccountController));
 
-        public PasswordHasher<string> passwordHasser = new PasswordHasher<string>();
-
+        //public PasswordHasher<string> passwordHasser = new PasswordHasher<string>();        
         //MANDTORY: Contexte permet de Query la DB
-        private readonly GreenSharingContext _context;
+        //private readonly GreenSharingContext _context;
+        private readonly IAccountRepository _accountRepository;
 
         //MANDTORY
-        public AccountController(GreenSharingContext context)
+        public AccountController(IAccountRepository accountRepository/*, GreenSharingContext context*/)
         {
-            _context = context;
+            //_context = context;
+            _accountRepository = accountRepository;
         }
 
         [HttpPost]
@@ -37,18 +40,17 @@ namespace GreenSharing.API.Controllers
         [ProducesResponseType(typeof(void), 400)]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginDto)
         {
+            Account account;
             try
             {
-                //TODO: Logique de Login
-               
+                account = await _accountRepository.LoginAsync(loginDto);
             }
             catch (Exception e)
-
             {
                 return BadRequest(e);
             }
 
-            return Ok(loginDto);
+            return Ok(account);
         }
 
         [HttpPost]
@@ -57,8 +59,19 @@ namespace GreenSharing.API.Controllers
         [ProducesResponseType(typeof(void), 400)]
         public async Task<IActionResult> Create([FromBody] Account account)
         {
+            Account accountCreated = null;
             try
             {
+                //1. Find the AccounType related
+                Account accountType; //Farmer, Gleaner, BankFood
+
+                //2. Create the Account attahcing its AccounType
+                var result = await _accountRepository.CreateAsync(account);
+
+                //3. If there is Any AccountLocation Specified and createe it
+                //Creates Location if provided !
+
+                /*
                 //TODO: A FAIRE ceci est juste un exemple ! pour montrer lùtilisation direct du Contexte de la BD
                 account.Password = passwordHasser.HashPassword(account.Id.ToString(), account.Password);
                 account.CreationDate = DateTime.UtcNow;
@@ -68,6 +81,8 @@ namespace GreenSharing.API.Controllers
 
                 await _context.Account.AddAsync(account);
                 await _context.SaveChangesAsync();
+
+                //Accoun-Type ? CreateGleaner(), CreateBankFood(), CreateFarmer()*/
             }
             catch (Exception e)
 
@@ -75,9 +90,8 @@ namespace GreenSharing.API.Controllers
                 return BadRequest(e);
             }
 
-            return Ok(account);
+            return Ok(accountCreated);
         }
-
 
         [HttpPost]
         [AllowAnonymous]
@@ -85,10 +99,10 @@ namespace GreenSharing.API.Controllers
         [ProducesResponseType(typeof(void), 400)]
         public async Task<IActionResult> GetAll([FromBody] LoginDTO loginDto)
         {
-            var accounts = new List<Account>();
+            IEnumerable<Account> accounts= null;
             try
             {
-                accounts = await _context.Account.ToListAsync();
+                accounts = await _accountRepository.AllAsync();
             }
             catch (Exception e)
 
@@ -109,7 +123,7 @@ namespace GreenSharing.API.Controllers
             Account account ;
             try
             {
-                account = await _context.Account.FirstOrDefaultAsync(x => x.Id == accountId);
+                account = await _accountRepository.FindAsync(x => x.Id == accountId);
             }
             catch (Exception e)
 

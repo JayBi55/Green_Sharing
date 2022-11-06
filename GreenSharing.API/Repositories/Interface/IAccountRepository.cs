@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories.Interface
 {
-    public interface IAccountStore : IGenericStore<Account>
+    public interface IAccountRepository : IGenericRepository<Account>
     {
         Task<Account> LoginAsync(LoginDTO loginDto);
     }

@@ -1,5 +1,6 @@
 using GreenSharing.API.Filters;
 using GreenSharing.API.Models;
+using GreenSharing.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,6 +53,9 @@ namespace GreenSharing.API
             services.AddDbContext<GreenSharingContext>(options => options.UseSqlServer(connectionString));
             //services.AddDbContext<GreenSharingContext>(opt => opt.UseInMemoryDatabase("GreenSharing"));
 
+            //Bootsrap Microservices and BAL and DAL
+            services.BootStrapRepositories();
+
             services.AddControllers();
             services.AddSwaggerDocument();
 
@@ -74,7 +78,7 @@ namespace GreenSharing.API
             }
 
             app.UseOpenApi();
-            app.UseSwaggerUI();
+            app.UseSwaggerUi3();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreenSharing.API v1"));
 

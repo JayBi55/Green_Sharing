@@ -15,6 +15,17 @@ namespace GreenSharing.API.Models
         public string Availability { get; set; }
         public long DistanceMax { get; set; }
 
+        [NotMapped]
+        public long Score
+        {
+            get
+            {
+                return 5; //TODO: Doit etre une compilation de ses BankFoodReview.Score
+            }
+        }
+
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         [NotMapped]
         public string Address { get { return Account.AccountLocations.FirstOrDefault( x => x.AccountId == Id )?.Address; } }

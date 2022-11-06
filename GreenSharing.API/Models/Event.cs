@@ -19,6 +19,8 @@ namespace GreenSharing.API.Models
         public string Contact { get; set; }
         public long Capacity { get; set; }
         public string Status { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Guid FarmerProductId { get; set; }
         public virtual FarmerProduct FarmerProduct { get; set; }

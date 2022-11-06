@@ -10,6 +10,9 @@ namespace GreenSharing.API.Models
         public string Comment { get; set; }
         public int Carpooling { get; set; }
 
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         public Guid EventId { get; set; }
         public virtual Event Event { get; set; }
 

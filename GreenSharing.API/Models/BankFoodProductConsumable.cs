@@ -13,6 +13,9 @@ namespace GreenSharing.API.Models
         public DateTime DateStart { get; set; }
         public DateTime? DateEnd { get; set; }
 
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         //FK
         public Guid BankFoodId { get; set; }
         public Guid ProductId { get; set; }

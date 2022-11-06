@@ -8,9 +8,17 @@ namespace GreenSharing.API.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Contact { get; set; }
         public long DistanceMax { get; set; }
-        public long Score{ get; set; }
+
+        [NotMapped]
+        public long Score {
+            get { 
+                return 5; //TODO: Doit etre une compilation de ses GleanerReview.Score
+            } 
+        }
+
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }

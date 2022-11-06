@@ -11,13 +11,16 @@ namespace GreenSharing.API.Models
         public static readonly Guid BankFood = new Guid("9EFCC1A2-DDF1-4AC4-B1D4-0E406A3BB6F3");
         public static readonly Guid Gleaner = new Guid("E406461D-D732-4F4F-917F-A69128CB0599");
 
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string NameKey { get; set; }
 
         public DateTime CreationDate { get; set; }
         public DateTime? ClosingDate { get; set; }
         public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
+        public virtual IList<Account> Account { get; set; } = new List<Account>();
     }
 
     public static class AccountTypes

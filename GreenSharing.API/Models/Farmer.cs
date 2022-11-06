@@ -14,6 +14,18 @@ namespace GreenSharing.API.Models
         public string Notes { get; set; }
         public DateTime Availability { get; set; }
 
+        [NotMapped]
+        public long Score
+        {
+            get
+            {
+                return 5; //TODO: Doit etre une compilation de ses FamerReview.Score
+            }
+        }
+
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         //FK
         public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }

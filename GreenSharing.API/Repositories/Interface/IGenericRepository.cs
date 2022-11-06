@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories.Interface
 {
-    public interface IGenericStore<Entity> where Entity : class
+    public interface IGenericRepository<Entity> where Entity : class
     {
         //Create
         Task<int> CreateOrUpdateAsync(Entity entity, bool needsUpdating = true);

@@ -9,6 +9,9 @@ namespace GreenSharing.API.Models
         public DateTime Date { get; set; }
         public string Comment { get; set; }
 
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         public Guid EventId { get; set; }
         public virtual Event Event { get; set; }
 

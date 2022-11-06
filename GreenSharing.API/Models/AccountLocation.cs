@@ -14,6 +14,9 @@ namespace GreenSharing.API.Models
         public double Latitude { get; set; }
         public double Longtitude { get; set; }
 
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+
         public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
     }

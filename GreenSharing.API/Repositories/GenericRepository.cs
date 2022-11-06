@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories
 {
-    public class GenericStore<Entity> : IGenericStore<Entity> where Entity : class
+    public class GenericRepository<Entity> : IGenericRepository<Entity> where Entity : class
     {
-        protected static readonly ILog Logger = LogManager.GetLogger(typeof(IGenericStore<Entity>));
+        protected static readonly ILog Logger = LogManager.GetLogger(typeof(IGenericRepository<Entity>));
 
         internal DbSet<Entity> DbSet;
         public GreenSharingContext Context { get; }
 
-        public GenericStore(GreenSharingContext context)
+        public GenericRepository(GreenSharingContext context)
         {
             Context = context;
             DbSet = Context.Set<Entity>();
