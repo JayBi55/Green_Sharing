@@ -21,7 +21,7 @@ namespace GreenSharing.API
 
             //REPOSITORIES (I)ClassRepositories - Contains custom methods targeted at the Class
             services.AddScoped(typeof(IAccountRepository), typeof(AccountRepository));
-            //services.AddScoped(typeof(IEventRepository), typeof(IEventRepository));
+            services.AddScoped(typeof(IEventRepository), typeof(EventRepository));
         }
     }
 }

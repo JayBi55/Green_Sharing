@@ -84,37 +84,46 @@ namespace GreenSharing.API.Migrations
                         {
                             Id = new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"),
                             AccountTypeId = new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 3, 51, DateTimeKind.Utc).AddTicks(7031),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 803, DateTimeKind.Utc).AddTicks(217),
                             Email = "farmer@yopmail.com",
+                            FirstName = "Farmer",
                             IsActive = true,
                             IsConsentAccepted = true,
                             IsDeleted = false,
                             IsEnabled = true,
-                            Password = "AQAAAAEAACcQAAAAEO0QSF1ED2xyX8BN2YMtLjWTs/iTLE7FWcL50CCp6Jd9ODa9BFrNscjD5qcQB/M8rQ=="
+                            LastName = "John Doe",
+                            Password = "AQAAAAEAACcQAAAAEHYMkQmw/0Tpx2VLCVuYWw2N/RIpdIWfZfwDQRjEGLhCzbNsHrLurzQKwjUY3LnVLw==",
+                            SurName = "Big J."
                         },
                         new
                         {
                             Id = new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"),
                             AccountTypeId = new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 3, 97, DateTimeKind.Utc).AddTicks(6574),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 892, DateTimeKind.Utc).AddTicks(7917),
                             Email = "bankFood@yopmail.com",
+                            FirstName = "Moisson Montreal",
                             IsActive = true,
                             IsConsentAccepted = true,
                             IsDeleted = false,
                             IsEnabled = true,
-                            Password = "AQAAAAEAACcQAAAAEDdSUJILLJEzF9rPNi1v3sOMTMyKxnCKDsLiEnwlD1B3Xg/zl7NGe6XaNrPQObfFWw=="
+                            LastName = "Moisson Montreal",
+                            Password = "AQAAAAEAACcQAAAAEOTYPoCYC2Xb2PE41buYeM5DyqPiyUE9REceAn20VdJuFi+Q2cPGh5EI6oNvKV/f5w==",
+                            SurName = "Give Back to Community"
                         },
                         new
                         {
                             Id = new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"),
                             AccountTypeId = new Guid("e406461d-d732-4f4f-917f-a69128cb0599"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 3, 244, DateTimeKind.Utc).AddTicks(8971),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 944, DateTimeKind.Utc).AddTicks(2109),
                             Email = "gleaner@yopmail.com",
+                            FirstName = "Gleaner",
                             IsActive = true,
                             IsConsentAccepted = true,
                             IsDeleted = false,
                             IsEnabled = true,
-                            Password = "AQAAAAEAACcQAAAAEGdGGMqXlEt/UPZccg/kDqkgdzgBGC17M4JtABOAzLIjnQ/HKqBl0qQQQ9pof6aV8Q=="
+                            LastName = "Jeanette Odu",
+                            Password = "AQAAAAEAACcQAAAAEH7BPoWY3IsrYSg7fY36CPIsyIBWGsy3wZ8jqLIz/oVsvWOIKghFpTvTJYtSqL3KyQ==",
+                            SurName = "Jeane"
                         });
                 });
 
@@ -190,7 +199,7 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(7604),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(6422),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Farmer",
@@ -199,7 +208,7 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8001),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7570),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "BankFood",
@@ -208,7 +217,7 @@ namespace GreenSharing.API.Migrations
                         new
                         {
                             Id = new Guid("e406461d-d732-4f4f-917f-a69128cb0599"),
-                            CreationDate = new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8006),
+                            CreationDate = new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7579),
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Gleaner",

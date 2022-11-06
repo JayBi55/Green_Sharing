@@ -28,6 +28,9 @@ namespace GreenSharing.API.Models
         public DateTime? DisabledDate { get; set; }
         public DateTime? ConsentDate { get; set; }
 
+        [NotMapped]
+        public string AccountTypeName { get; set; }
+
         public Guid AccountTypeId { get; set; }
         public virtual AccountType AccountType { get; set; }
 

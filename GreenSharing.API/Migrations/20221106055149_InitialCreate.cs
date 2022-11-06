@@ -482,9 +482,9 @@ namespace GreenSharing.API.Migrations
                 columns: new[] { "Id", "ClosingDate", "CreationDate", "IsActive", "IsDeleted", "Name", "NameKey" },
                 values: new object[,]
                 {
-                    { new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(7604), true, false, "Farmer", "Farmer" },
-                    { new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8001), true, false, "BankFood", "BankFood" },
-                    { new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 4, 21, 2, 935, DateTimeKind.Utc).AddTicks(8006), true, false, "Gleaner", "Gleaner" }
+                    { new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(6422), true, false, "Farmer", "Farmer" },
+                    { new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7570), true, false, "BankFood", "BankFood" },
+                    { new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7579), true, false, "Gleaner", "Gleaner" }
                 });
 
             migrationBuilder.InsertData(
@@ -512,19 +512,19 @@ namespace GreenSharing.API.Migrations
                 schema: "identity",
                 table: "Account",
                 columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"), new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 4, 21, 3, 51, DateTimeKind.Utc).AddTicks(7031), null, "farmer@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEO0QSF1ED2xyX8BN2YMtLjWTs/iTLE7FWcL50CCp6Jd9ODa9BFrNscjD5qcQB/M8rQ==", null, null, null });
+                values: new object[] { new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"), new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 5, 51, 46, 803, DateTimeKind.Utc).AddTicks(217), null, "farmer@yopmail.com", null, "Farmer", true, true, false, true, "John Doe", "AQAAAAEAACcQAAAAEHYMkQmw/0Tpx2VLCVuYWw2N/RIpdIWfZfwDQRjEGLhCzbNsHrLurzQKwjUY3LnVLw==", null, "Big J.", null });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Account",
                 columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"), new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 4, 21, 3, 97, DateTimeKind.Utc).AddTicks(6574), null, "bankFood@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEDdSUJILLJEzF9rPNi1v3sOMTMyKxnCKDsLiEnwlD1B3Xg/zl7NGe6XaNrPQObfFWw==", null, null, null });
+                values: new object[] { new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"), new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 5, 51, 46, 892, DateTimeKind.Utc).AddTicks(7917), null, "bankFood@yopmail.com", null, "Moisson Montreal", true, true, false, true, "Moisson Montreal", "AQAAAAEAACcQAAAAEOTYPoCYC2Xb2PE41buYeM5DyqPiyUE9REceAn20VdJuFi+Q2cPGh5EI6oNvKV/f5w==", null, "Give Back to Community", null });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Account",
                 columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"), new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 4, 21, 3, 244, DateTimeKind.Utc).AddTicks(8971), null, "gleaner@yopmail.com", null, null, true, true, false, true, null, "AQAAAAEAACcQAAAAEGdGGMqXlEt/UPZccg/kDqkgdzgBGC17M4JtABOAzLIjnQ/HKqBl0qQQQ9pof6aV8Q==", null, null, null });
+                values: new object[] { new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"), new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 5, 51, 46, 944, DateTimeKind.Utc).AddTicks(2109), null, "gleaner@yopmail.com", null, "Gleaner", true, true, false, true, "Jeanette Odu", "AQAAAAEAACcQAAAAEH7BPoWY3IsrYSg7fY36CPIsyIBWGsy3wZ8jqLIz/oVsvWOIKghFpTvTJYtSqL3KyQ==", null, "Jeane", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_AccountTypeId",
