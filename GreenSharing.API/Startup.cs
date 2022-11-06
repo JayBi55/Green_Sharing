@@ -58,7 +58,6 @@ namespace GreenSharing.API
 
             services.AddControllers();
             services.AddSwaggerDocument();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo() { Title = "GreenSharing.API", Version = "v1" });
@@ -79,7 +78,6 @@ namespace GreenSharing.API
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreenSharing.API v1"));
 
             app.UseHttpsRedirection();
