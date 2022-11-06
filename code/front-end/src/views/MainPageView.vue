@@ -57,7 +57,7 @@
 
             </div>
         </div>
-        <FooterVue style="bottom:0"/>
+        <FooterVue style="bottom:-100"/>
     </div>
 </template>
 
@@ -66,12 +66,13 @@ import { defineComponent } from 'vue';
 import MainBar from '@/components/MainBar.vue';
 import TransitorieBar from '@/components/TransitorieBar.vue';
 import FooterVue from '@/components/FooterVue.vue';
+import GoogleMap from '@/components/GoogleMap.vue';
 import {listEventRegistred, listEventConfirm} from '@/constant/constants-duummy'
 import { useUserStore } from '@/stores/user';
 
 export default defineComponent({
     name:'MainPageView',
-    components: {MainBar, TransitorieBar,FooterVue },
+    components: {MainBar, TransitorieBar,FooterVue,GoogleMap },
     setup() {
         const userStore = useUserStore();
         return {
@@ -88,7 +89,7 @@ export default defineComponent({
             return ''
         }
     },
-    data() {
+        data() {
         return {
 
         }

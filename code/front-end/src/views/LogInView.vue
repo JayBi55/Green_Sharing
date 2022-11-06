@@ -65,12 +65,12 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 
 * {box-sizing: border-box}
 
 .login-css{
-  background-image: url(../images/backgroundLogIn.jpg);
+  background-image: url(../images/background.jpg);
   background-size: cover;
 }
 h1{
