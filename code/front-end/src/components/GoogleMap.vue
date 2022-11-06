@@ -1,207 +1,77 @@
 <template>
-    <div ref="googleMapRef" :style="{ height: height, width: width }" />
-  </template>
+  <GoogleMap api-key="AIzaSyDOxBpHQItSgjANE4tp8f3zjDvGTIaqIqU" backgroundColor="dark" style="width: 100%;  height: 500px" :center="center" :zoom="6">
+    <Marker v-for="mark in getMarkers()" :key="mark.title" :options="{position: mark.center}">
+      <InfoWindow>
+        <div id="contet" style="background-color:{{mark.color}};color:white">
+          <div id="siteNotice"></div>
+          <h1 id="firstHeading" class="firstHeading">{{mark.title}}</h1>
+          <div id="bodyContent">
+            <p v-for="text, index in mark.description" :key="index">
+              {{text}}
+            </p>
+          </div>
+        </div>
+      </InfoWindow>
+    </Marker>
+  </GoogleMap>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import { GoogleMap, Marker, InfoWindow } from "vue3-google-map";
+import { listofCreatedEvents } from "@/constant/constants-duummy";
+
+export default defineComponent({
+  components: { GoogleMap, Marker, InfoWindow },
+  setup() {
+    const center = { lat: 45.54, lng: -73.674824 };
   
-  <script lang="ts">
-  ///<reference types="google.maps" />
-  /* eslint-disable no-undef */
-  //import {} from 'googlemaps';
-  import '@types/googlemaps';
-  import { defineComponent, onMounted, ref, watch } from "vue";
-  import type { PropType } from "vue";
-  import {loadGoogleMapsScript} from "@/components/GooglemapLoader";
-  import type {GoogleMapsScriptLoadParams} from "@/components/GooglemapLoader";
-  type Props = {
-    apiKey: string;
-    libraries: string;
-    height: string;
-    width: string;
-    options: google.maps.MapOptions;
-    markers: google.maps.MarkerOptions[];
-    polylines: google.maps.PolylineOptions[];
-    polygons: google.maps.PolygonOptions[];
-    circles: google.maps.CircleOptions[];
-    rectangles: google.maps.RectangleOptions[];
-  };
-  export default defineComponent({
-    name: "GoogleMap",
-    props: {
-      apiKey: {
-        type: String,
-        required: true,
-      },
-      libraries: {
-        type: String,
-        required: true,
-        default: "geometry,drawing,places",
-      },
-      height: {
-        type: String,
-        required: false,
-        default: "500px",
-      },
-      width: {
-        type: String,
-        required: false,
-        default: "500px",
-      },
-      options: {
-        type: Object as PropType<google.maps.MapOptions>,
-        required: true,
-      },
-      markers: {
-        type: Array as PropType<google.maps.MarkerOptions[]>,
-        required: false,
-        default: () => [],
-      },
-      polylines: {
-        type: Array as PropType<google.maps.PolylineOptions[]>,
-        required: false,
-        default: () => [],
-      },
-      polygons: {
-        type: Array as PropType<google.maps.PolygonOptions[]>,
-        required: false,
-        default: () => [],
-      },
-      circles: {
-        type: Array as PropType<google.maps.CircleOptions[]>,
-        required: false,
-        default: () => [],
-      },
-      rectangles: {
-        type: Array as PropType<google.maps.RectangleOptions[]>,
-        required: false,
-        default: () => [],
-      },
-    },
-    setup(props: Props, { emit }) {
-      let map = {} as google.maps.Map;
-      let markers = [] as google.maps.Marker[];
-      let polylines = [] as google.maps.Polyline[];
-      let polygons = [] as google.maps.Polygon[];
-      let circles = [] as google.maps.Circle[];
-      let rectangles = [] as google.maps.Rectangle[];
-      function createMap(
-        mapElement: HTMLElement,
-        option: google.maps.MapOptions
-      ): google.maps.Map {
-        const map = new google.maps.Map(mapElement, { ...option });
-        emit("map-created", map);
-        return map;
-      }
-      function createMarkers(
-        map: google.maps.Map,
-        options: google.maps.MarkerOptions[]
-      ): google.maps.Marker[] {
-        const markers = options.map(
-          (option) => new google.maps.Marker({ ...option, map: map })
-        );
-        emit("markers-created", markers);
-        return markers;
-      }
-      function createPolylines(
-        map: google.maps.Map,
-        options: google.maps.PolylineOptions[]
-      ): google.maps.Polyline[] {
-        const polylines = options.map(
-          (option) => new google.maps.Polyline({ ...option, map: map })
-        );
-        emit("polylines-created", polylines);
-        return polylines;
-      }
-      function createPolygons(
-        map: google.maps.Map,
-        options: google.maps.PolylineOptions[]
-      ): google.maps.Polygon[] {
-        const polygons = options.map(
-          (option) => new google.maps.Polygon({ ...option, map: map })
-        );
-        emit("polygons-created", polygons);
-        return polygons;
-      }
-      function createCircles(
-        map: google.maps.Map,
-        options: google.maps.CircleOptions[]
-      ): google.maps.Circle[] {
-        const circles = options.map(
-          (option) => new google.maps.Circle({ ...option, map: map })
-        );
-        emit("circles-created", circles);
-        return circles;
-      }
-      function createRectangles(
-        map: google.maps.Map,
-        options: google.maps.RectangleOptions[]
-      ): google.maps.Rectangle[] {
-        const rectangles = options.map(
-          (option) => new google.maps.Rectangle({ ...option, map: map })
-        );
-        emit("rectangles-created", rectangles);
-        return rectangles;
-      }
-      const googleMapRef = ref<HTMLElement>();
-      onMounted(() => {
-        if (!googleMapRef.value) throw new Error("googleMapRef is undefined");
-        loadGoogleMapsScript({
-          key: props.apiKey,
-          libraries: props.libraries,
-        } as GoogleMapsScriptLoadParams)
-          .then(() => {
-            const mapElement = googleMapRef.value as HTMLElement;
-            if (!mapElement)
-              throw new Error("[GoogleMap] Failed to reference 'mapElement'");
-            map = createMap(mapElement, props.options);
-            markers = createMarkers(map, props.markers);
-            polylines = createPolylines(map, props.polylines);
-            polygons = createPolygons(map, props.polygons);
-            circles = createCircles(map, props.circles);
-            rectangles = createRectangles(map, props.rectangles);
-          })
-          .catch((error) => console.error(error));
-      });
-      watch(
-        () => props.options,
-        (value) => map.setOptions(value)
-      );
-      watch(
-        () => props.markers,
-        (value) => {
-          markers.forEach((marker) => marker.setMap(null));
-          markers = createMarkers(map, value);
-        }
-      );
-      watch(
-        () => props.polylines,
-        (value) => {
-          polylines.forEach((polyline) => polyline.setMap(null));
-          polylines = createPolylines(map, value);
-        }
-      );
-      watch(
-        () => props.polygons,
-        (value) => {
-          polygons.forEach((polygon) => polygon.setMap(null));
-          polygons = createPolygons(map, value);
-        }
-      );
-      watch(
-        () => props.circles,
-        (value) => {
-          circles.forEach((circle) => circle.setMap(null));
-          circles = createCircles(map, value);
-        }
-      );
-      watch(
-        () => props.rectangles,
-        (value) => {
-          rectangles.forEach((rectangle) => rectangle.setMap(null));
-          rectangles = createRectangles(map, value);
-        }
-      );
-      return {
-        googleMapRef,
-      };
-    },
-  });
-  </script>
+    return { center, listofCreatedEvents};
+  },
+
+  methods: {
+    getMarkers() {
+      const markers = [
+        {
+          center: {lat: 53, lng:-70},
+          title: 'Let\'s save some tomatoes here!!',
+          description: ['Pierre Emile created that event', 'Starting on 2022-11-12', 'Ending before 2022-11-13', 'HIGH Priority'],
+          color: 'red'
+        },
+        {
+          center: {lat: 55.60, lng:-70.50},
+          title: 'Let\'s save some Apples here!!',
+          description: ['Marc Dragnir  created that event', 'Starting on 2022-11-10', 'Ending before 2022-11-13', 'HIGH Priority'],
+          color: 'red'
+        },
+        {
+          center: {lat: 45.42, lng:-75.69},
+          title: 'Let\'s save some pineapples here!!',
+          description: ['Luffy D  created that event', 'Starting on 2022-11-15', 'Ending before 2022-11-20', 'Low Priority'],
+          color: 'green'
+        },
+        {
+          center: {lat: 43.65, lng:-79.34},
+          title: 'Let\'s save some strawberrys here!!',
+          description: ['Ethan duFromage created that event', 'Starting on 2022-11-12', 'Ending before 2022-11-13', 'Low Priority'],
+          color: 'green'
+        },
+        {
+          center: {lat: 45.50, lng:-73.79},
+          title: 'Let\'s save some potatoes here!!',
+          description: ['Kilua created that event', 'Starting on 2022-11-15', 'Ending before 2022-11-17', 'Low Priority'],
+          color: 'green'
+        },
+        {
+          center: {lat: 46.7, lng:-75.45},
+          title: 'Let\'s save some peaches here!!',
+          description: ['Shanks Le Roux created that event', 'Starting on 2022-11-09', 'Ending before 2022-11-11', 'Medium Priority'],
+          color: 'yellow'
+        },
+          
+      ]
+      return markers
+    }
+  }
+});
+</script>

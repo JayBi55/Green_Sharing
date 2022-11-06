@@ -4,6 +4,10 @@
         <TransitorieBar :userConnected="getUser"/>
         <div class="row">
             <div class="col-7">
+                <div class="d-flex align-items-center ms-5">
+                    <GoogleMap class="m-5"/>
+                </div>
+                
                 <div v-if="userStore.userType==='Farmer'">
                     <h2>{{userStore.userName}}, those are the events you create</h2>
                     <hr/>

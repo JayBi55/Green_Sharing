@@ -1,7 +1,7 @@
 <template>
     <div class="login-css w-100 h-100">
         <div class="container">
-          <img src="@/assets/Free_Sample_Logo.jpg" alt="warning" class="logo"/>
+          <img src="@/assets/logo_of.jpg" alt="warning" class="logo"/>
           <h1>Green Sharing</h1>
           <hr>
           <div class="row ms-5">

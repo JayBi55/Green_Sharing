@@ -1,6 +1,6 @@
 <template>
     <div class="main-bar p-3 d-flex justify-content-between w-100">
-        <img src="@/assets/Free_Sample_Logo.jpg" alt="warning" class="logo"/>
+        <img src="@/assets/logo_of.jpg" alt="warning" class="logo"/>
         <h2 class="ecriture align-self-center">Green Sharing</h2>
         <div  class="logo-sign" @click="redirectSignIn">
             <img src="@/assets/images_logo.png" alt="warning" class="logo"/><br/>
