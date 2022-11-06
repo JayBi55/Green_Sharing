@@ -1,7 +1,7 @@
 <template>
     <div class="p-4 m-2">
      <div v-if="userConnected === 'Benevole'">
-        <h2 class="mb-3">Bonjour {{userStore.userName}}</h2>
+        <h2 class="mb-3">Good morning {{userStore.userName}}</h2>
         <div class="d-flex justify-content-between">
             <button class="button-event">Check all event by expiration date</button>
             <input type="search" class="search" placeholder="Search event by tag or farmer's names..."/>
@@ -9,9 +9,9 @@
      </div>
 
      <div v-else-if="userConnected === 'Farmer'" class="row">
-        <h2 class="mb-3">Bonjour {{userStore.userName}}</h2>
+        <h2 class="mb-3">Good morning {{userStore.userName}}</h2>
         <div class="col-8 d-flex justify-content-between">
-             <button class="button-event-farmer" style="background-color: #003778;">Create an event</button>
+             <button class="button-event-farmer" style="background-color: #003778;" @click="createEvent()">Create an event</button>
             <button class="button-event-farmer" style="background-color: #F9AC28;">Update an event</button>
             <button class="button-event-farmer" style="background-color: red;">Delete an event</button>
         </div>
@@ -44,6 +44,12 @@ export default defineComponent({
             default: ''
         }
     },
+
+    methods: {
+        createEvent() {
+            this.$router.push({name:'createEvent'})
+        }
+    }
 
 })
 </script>

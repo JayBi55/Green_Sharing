@@ -4,10 +4,9 @@
         <TransitorieBar :userConnected="getUser"/>
         <div class="row">
             <div class="col-7">
-                This is map
             </div>
             <div class="col-5">
-                <div v-if="userStore.userType">
+                <div v-if="userStore.userType === 'Benevole'">
                     <h4>List of events you are already registred.</h4>
                     <table class="table table-striped table-dark thead-dark">
                         <thead style="background-color:black">
@@ -54,7 +53,9 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div v-else-if="userStore.userType === 'Farmer'">
+                    <FarmerTableVue/>
+                </div>
             </div>
         </div>
         <FooterVue style="bottom:0"/>
@@ -68,16 +69,17 @@ import TransitorieBar from '@/components/TransitorieBar.vue';
 import FooterVue from '@/components/FooterVue.vue';
 import {listEventRegistred, listEventConfirm} from '@/constant/constants-duummy'
 import { useUserStore } from '@/stores/user';
+import FarmerTableVue from '@/components/FarmerTableVue.vue';
 
 export default defineComponent({
     name:'MainPageView',
-    components: {MainBar, TransitorieBar,FooterVue },
+    components: {MainBar, TransitorieBar,FooterVue, FarmerTableVue },
     setup() {
         const userStore = useUserStore();
         return {
             userStore,
             listEventRegistred,
-            listEventConfirm
+            listEventConfirm,
         }
     },
     computed: {

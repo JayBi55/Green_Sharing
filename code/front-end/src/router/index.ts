@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainPageView from '@/views/MainPageView.vue'
 import LogInView from '../views/LogInView.vue'
+import CreateEvent from '@/views/CreateEvent.vue'
 
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LogInView
+    },
+    {
+      path: '/create-event',
+      name: 'createEvent',
+      component: CreateEvent
     },
 
   ]
