@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,15 +9,17 @@ namespace GreenSharingAPI.Models
     public class BankFood
     {
         public Guid Id { get; set; }
-        public string nom_banque { get; set; }
-        public string dresse { get; set; }
-        public string province { get; set; }
-        public int contact { get; set; }
-        public string disponibilité_bankFood { get; set; }
-        public int distance_max { get; set; }
+        public string Name { get; set; }
+
+        public string Availability { get; set; }
+        public long DistanceMax { get; set; }
+
+
+        [NotMapped]
+        public string Address { get { return Account.AccountLocations.FirstOrDefault( x => x.AccountId == Id )?.Address; } }
+
         //FK
-        public Guid accountID { get; set; }
+        public Guid AccountId { get; set; }
         public virtual Account Account { get; set; }
     }
-}
 }

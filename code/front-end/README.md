@@ -1,3 +1,10 @@
+# Important
+
+To log In as an gleanner: [123456, morganstanley] or [1234, 1234]
+
+To log In as an farmer: [pierre01, pierre01], [marc01, marc01]
+
+
 # green-sharing
 
 This template should help get you started developing with Vue 3 in Vite.
