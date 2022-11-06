@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GreenSharing.API.Models
+namespace GreenSharing.API.Repositories.DataAccessLayer.Models
 {
     [Table("Gleaner", Schema = "identity")]
     public class Gleaner

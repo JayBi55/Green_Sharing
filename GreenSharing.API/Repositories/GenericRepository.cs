@@ -1,4 +1,4 @@
-﻿using GreenSharing.API.Models;
+﻿using GreenSharing.API.Repositories.DataAccessLayer;
 using GreenSharing.API.Repositories.Interface;
 using log4net;
 using Microsoft.EntityFrameworkCore;

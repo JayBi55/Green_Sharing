@@ -1,5 +1,6 @@
 ﻿using GreenSharing.API.Dtos;
-using GreenSharing.API.Models;
+using GreenSharing.API.Repositories.DataAccessLayer;
+using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using GreenSharing.API.Repositories.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

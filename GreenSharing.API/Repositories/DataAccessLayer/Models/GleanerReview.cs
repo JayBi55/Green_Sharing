@@ -1,7 +1,7 @@
 ﻿using System;
 using YamlDotNet.Core;
 
-namespace GreenSharing.API.Models
+namespace GreenSharing.API.Repositories.DataAccessLayer.Models
 {
     public class GleanerReview
     {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GreenSharing.API.Models
+namespace GreenSharing.API.Repositories.DataAccessLayer.Models
 {
+    [Table("AccountType", Schema = "identity")]
     public class AccountType
     {
         public static readonly Guid Farmer   = new Guid("35049D72-C586-4BED-92B0-918FD61CA92E");

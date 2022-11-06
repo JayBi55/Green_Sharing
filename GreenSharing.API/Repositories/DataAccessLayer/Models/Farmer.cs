@@ -4,31 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GreenSharing.API.Models
+namespace GreenSharing.API.Repositories.DataAccessLayer.Models
 {
-    [Table("BankFood", Schema = "identity")]
-    public class BankFood
+    [Table("Farmer", Schema = "identity")]
+    public class Farmer
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
-        public string Availability { get; set; }
-        public long DistanceMax { get; set; }
+        public string Notes { get; set; }
+        public DateTime Availability { get; set; }
 
         [NotMapped]
         public long Score
         {
             get
             {
-                return 5; //TODO: Doit etre une compilation de ses BankFoodReview.Score
+                return 5; //TODO: Doit etre une compilation de ses FamerReview.Score
             }
         }
 
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-
-        [NotMapped]
-        public string Address { get { return Account.AccountLocations.FirstOrDefault( x => x.AccountId == Id )?.Address; } }
 
         //FK
         public Guid AccountId { get; set; }

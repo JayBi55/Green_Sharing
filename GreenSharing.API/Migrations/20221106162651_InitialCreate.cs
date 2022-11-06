@@ -15,6 +15,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AccountType",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -31,6 +32,28 @@ namespace GreenSharing.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DeviceInfo",
+                schema: "identity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DeviceId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeviceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VersionString = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeviceInfo", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EventPriority",
                 columns: table => new
                 {
@@ -43,6 +66,21 @@ namespace GreenSharing.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventPriority", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OAuthProvider",
+                schema: "identity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OAuthProvider", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,6 +104,7 @@ namespace GreenSharing.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,8 +119,7 @@ namespace GreenSharing.API.Migrations
                     IsConsentAccepted = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DisabledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ConsentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AccountTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ConsentDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,6 +127,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_Account_AccountType_AccountTypeId",
                         column: x => x.AccountTypeId,
+                        principalSchema: "identity",
                         principalTable: "AccountType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -122,15 +161,19 @@ namespace GreenSharing.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Door = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     Longtitude = table.Column<double>(type: "float", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,6 +183,77 @@ namespace GreenSharing.API.Migrations
                         column: x => x.AccountId,
                         principalSchema: "identity",
                         principalTable: "Account",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccountOAuth",
+                schema: "identity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OAuthProviderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserProviderId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsEmailVerified = table.Column<bool>(type: "bit", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountOAuth", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AccountOAuth_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalSchema: "identity",
+                        principalTable: "Account",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccountOAuth_OAuthProvider_OAuthProviderId",
+                        column: x => x.OAuthProviderId,
+                        principalSchema: "identity",
+                        principalTable: "OAuthProvider",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccountSession",
+                schema: "identity",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DeviceInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TokenFcm = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastLoginTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActualLoginTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountSession", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AccountSession_Account_AccountId",
+                        column: x => x.AccountId,
+                        principalSchema: "identity",
+                        principalTable: "Account",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccountSession_DeviceInfo_DeviceInfoId",
+                        column: x => x.DeviceInfoId,
+                        principalSchema: "identity",
+                        principalTable: "DeviceInfo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -478,16 +592,6 @@ namespace GreenSharing.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AccountType",
-                columns: new[] { "Id", "ClosingDate", "CreationDate", "IsActive", "IsDeleted", "Name", "NameKey" },
-                values: new object[,]
-                {
-                    { new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(6422), true, false, "Farmer", "Farmer" },
-                    { new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7570), true, false, "BankFood", "BankFood" },
-                    { new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 5, 51, 46, 462, DateTimeKind.Utc).AddTicks(7579), true, false, "Gleaner", "Gleaner" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "EventPriority",
                 columns: new[] { "Id", "Code", "IsActive", "IsDeleted", "Notes" },
                 values: new object[,]
@@ -510,21 +614,43 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.InsertData(
                 schema: "identity",
-                table: "Account",
-                columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"), new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 5, 51, 46, 803, DateTimeKind.Utc).AddTicks(217), null, "farmer@yopmail.com", null, "Farmer", true, true, false, true, "John Doe", "AQAAAAEAACcQAAAAEHYMkQmw/0Tpx2VLCVuYWw2N/RIpdIWfZfwDQRjEGLhCzbNsHrLurzQKwjUY3LnVLw==", null, "Big J.", null });
+                table: "AccountType",
+                columns: new[] { "Id", "ClosingDate", "CreationDate", "IsActive", "IsDeleted", "Name", "NameKey" },
+                values: new object[,]
+                {
+                    { new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2397), true, false, "Farmer", "Farmer" },
+                    { new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2838), true, false, "BankFood", "BankFood" },
+                    { new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 16, 26, 49, 406, DateTimeKind.Utc).AddTicks(2844), true, false, "Gleaner", "Gleaner" }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "OAuthProvider",
+                columns: new[] { "Id", "IsActive", "IsDeleted", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("ede4680a-eb19-43db-82c9-2bdfe61c0e2c"), true, false, "Google" },
+                    { new Guid("7756997b-5808-434d-ad43-7e2d28b06a84"), true, false, "Apple" },
+                    { new Guid("f35e5759-a9a5-4ea9-8c96-3c900fedde91"), true, false, "Facebook" }
+                });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Account",
                 columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"), new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 5, 51, 46, 892, DateTimeKind.Utc).AddTicks(7917), null, "bankFood@yopmail.com", null, "Moisson Montreal", true, true, false, true, "Moisson Montreal", "AQAAAAEAACcQAAAAEOTYPoCYC2Xb2PE41buYeM5DyqPiyUE9REceAn20VdJuFi+Q2cPGh5EI6oNvKV/f5w==", null, "Give Back to Community", null });
+                values: new object[] { new Guid("5985ba59-583b-49dc-9b44-fbb21382899f"), new Guid("35049d72-c586-4bed-92b0-918fd61ca92e"), null, new DateTime(2022, 11, 6, 16, 26, 49, 599, DateTimeKind.Utc).AddTicks(8183), null, "farmer@yopmail.com", null, "Farmer", true, true, false, true, "John Doe", "AQAAAAEAACcQAAAAEHMVfNL7GupjKVl8xjchtsGCND9SV6S6EzTm41zaj6gjH6jmA6Jv3qc5TjdR67896Q==", null, "Big J.", null });
 
             migrationBuilder.InsertData(
                 schema: "identity",
                 table: "Account",
                 columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
-                values: new object[] { new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"), new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 5, 51, 46, 944, DateTimeKind.Utc).AddTicks(2109), null, "gleaner@yopmail.com", null, "Gleaner", true, true, false, true, "Jeanette Odu", "AQAAAAEAACcQAAAAEH7BPoWY3IsrYSg7fY36CPIsyIBWGsy3wZ8jqLIz/oVsvWOIKghFpTvTJYtSqL3KyQ==", null, "Jeane", null });
+                values: new object[] { new Guid("46fa891c-1ae4-4373-aaa8-1125432ce9be"), new Guid("9efcc1a2-ddf1-4ac4-b1d4-0e406a3bb6f3"), null, new DateTime(2022, 11, 6, 16, 26, 49, 615, DateTimeKind.Utc).AddTicks(9349), null, "bankFood@yopmail.com", null, "Moisson Montreal", true, true, false, true, "Moisson Montreal", "AQAAAAEAACcQAAAAECIVpujxvgWSK2X/MUw+s1WQ2/lJt+vN1ut9ccjWdXJoAUZMW6TEFJ1myEDfzbgZig==", null, "Give Back to Community", null });
+
+            migrationBuilder.InsertData(
+                schema: "identity",
+                table: "Account",
+                columns: new[] { "Id", "AccountTypeId", "ConsentDate", "CreationDate", "DisabledDate", "Email", "FaxNumber", "FirstName", "IsActive", "IsConsentAccepted", "IsDeleted", "IsEnabled", "LastName", "Password", "PhoneNumber", "SurName", "UserName" },
+                values: new object[] { new Guid("fdc6aa3d-7eea-454c-a1aa-f76722087cd3"), new Guid("e406461d-d732-4f4f-917f-a69128cb0599"), null, new DateTime(2022, 11, 6, 16, 26, 49, 631, DateTimeKind.Utc).AddTicks(2165), null, "gleaner@yopmail.com", null, "Gleaner", true, true, false, true, "Jeanette Odu", "AQAAAAEAACcQAAAAEMC6naV95dk3wSKXQO8B4taUGQ2LPFudm9nY7gPuRwbmebsg/PPoY5v8BgsR3GTodw==", null, "Jeane", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_AccountTypeId",
@@ -537,6 +663,30 @@ namespace GreenSharing.API.Migrations
                 schema: "location",
                 table: "AccountLocation",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountOAuth_AccountId",
+                schema: "identity",
+                table: "AccountOAuth",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountOAuth_OAuthProviderId",
+                schema: "identity",
+                table: "AccountOAuth",
+                column: "OAuthProviderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountSession_AccountId",
+                schema: "identity",
+                table: "AccountSession",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccountSession_DeviceInfoId",
+                schema: "identity",
+                table: "AccountSession",
+                column: "DeviceInfoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankFood_AccountId",
@@ -649,6 +799,14 @@ namespace GreenSharing.API.Migrations
                 schema: "location");
 
             migrationBuilder.DropTable(
+                name: "AccountOAuth",
+                schema: "identity");
+
+            migrationBuilder.DropTable(
+                name: "AccountSession",
+                schema: "identity");
+
+            migrationBuilder.DropTable(
                 name: "BankFoodProductConsumable");
 
             migrationBuilder.DropTable(
@@ -665,6 +823,14 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "GleanerReview");
+
+            migrationBuilder.DropTable(
+                name: "OAuthProvider",
+                schema: "identity");
+
+            migrationBuilder.DropTable(
+                name: "DeviceInfo",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "BankFood",
@@ -698,7 +864,8 @@ namespace GreenSharing.API.Migrations
                 name: "ProductType");
 
             migrationBuilder.DropTable(
-                name: "AccountType");
+                name: "AccountType",
+                schema: "identity");
         }
     }
 }

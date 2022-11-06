@@ -1,10 +1,10 @@
-﻿using GreenSharing.API.Models;
+﻿using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
-namespace GreenSharing.API.Repositories
+namespace GreenSharing.API.Repositories.DataAccessLayer
 {
     public class GreenSharingContext : DbContext
     {
@@ -178,6 +178,30 @@ namespace GreenSharing.API.Repositories
                     IsEnabled = true,
                     CreationDate = DateTime.UtcNow
                 });
+
+            //OAuthProvider
+            modelBuilder.Entity<OAuthProvider>().HasData(
+                new OAuthProvider { 
+                    Id = OAuthProvider.GoogleId,
+                    Name = "Google",
+                    IsActive = true,
+                    IsDeleted = false
+                },
+                new OAuthProvider
+                {
+                    Id = OAuthProvider.AppleId,
+                    Name = "Apple",
+                    IsActive = true,
+                    IsDeleted = false
+                },
+                new OAuthProvider
+                {
+                    Id = OAuthProvider.FacebookId,
+                    Name = "Facebook",
+                    IsActive = true,
+                    IsDeleted = false
+                }
+                );
         }
 
         public DbSet<AccountType> AccountType { get; set; }

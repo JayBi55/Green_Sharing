@@ -1,5 +1,5 @@
 ﻿using System;
-namespace GreenSharing.API.Models
+namespace GreenSharing.API.Repositories.DataAccessLayer.Models
 {
     public class EventPriority
     {

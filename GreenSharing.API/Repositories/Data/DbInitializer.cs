@@ -1,9 +1,8 @@
-﻿using GreenSharing.API.Models;
+﻿using GreenSharing.API.Repositories.DataAccessLayer;
+using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories.Data
 {

@@ -1,8 +1,5 @@
 ﻿using GreenSharing.API.Dtos;
-using GreenSharing.API.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using System.Threading.Tasks;
 
 namespace GreenSharing.API.Repositories.Interface

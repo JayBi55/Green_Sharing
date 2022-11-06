@@ -1,10 +1,8 @@
 using GreenSharing.API.Filters;
-using GreenSharing.API.Models;
-using GreenSharing.API.Repositories;
+using GreenSharing.API.Logger;
+using GreenSharing.API.Repositories.DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,11 +10,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace GreenSharing.API
 {
@@ -65,9 +60,16 @@ namespace GreenSharing.API
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net();
+
             //Creer ou Mettre a jour la BD
             ApplyMigration<GreenSharingContext>(app);
 
@@ -75,16 +77,30 @@ namespace GreenSharing.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts(); //@TODO: Authentication & Authorization
+            }
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GreenSharing.API v1"));
 
+            // Turnings this off for now so we can communicate on the local host for desktop
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
             app.UseRouting();
 
+            //Authentication & Authorization : Must be before UseEndPoints
             app.UseAuthorization();
+            //app.UseAuthentication();
+
+            // TODO: Patch here. Solve CORS issue before sending to alpha/prod. 
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

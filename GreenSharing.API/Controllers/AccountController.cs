@@ -1,5 +1,5 @@
 ﻿using GreenSharing.API.Dtos;
-using GreenSharing.API.Models;
+using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using GreenSharing.API.Repositories.Interface;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
