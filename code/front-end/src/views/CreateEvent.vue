@@ -50,7 +50,7 @@
 import { defineComponent } from 'vue';
 import MainBar from '@/components/MainBar.vue';
 import { useUserStore } from '@/stores/user';
-import {listofCreatedEvents} from '@/constant/constants-duummy'
+import {listofCreatedEvents, listOfEvent} from '@/constant/constants-duummy'
 
 export default defineComponent({
     name: 'CreateEvent',
@@ -61,7 +61,8 @@ export default defineComponent({
         const userStore = useUserStore()
         return {
             userStore,
-            listofCreatedEvents
+            listofCreatedEvents,
+            listOfEvent
         }
     },
     data() {
@@ -89,6 +90,7 @@ export default defineComponent({
                     if(this.userStore.userId === this.name) {
                         this.IsEventCreated = true
                         const event = {
+                            farmerId: this.name,
                             startDate: this.startDatime,
                             endDate: this.endDatime,
                             priority: this.priority,
@@ -98,6 +100,22 @@ export default defineComponent({
                         }
                         this.listofCreatedEvents.unshift(event)
                         console.log(this.listofCreatedEvents)
+
+                        for(let i=0; i<=this.listOfEvent.length; i++) {
+                            if(this.listOfEvent[i].farmerId === this.userStore.userId){
+                                const newEv = {
+                                    num: (this.listOfEvent[i].events.length + 1) + '',
+                                    startDate: this.startDatime,
+                                    endDate: this.endDatime,
+                                    priority: this.priority,
+                                    adresse: this.location,
+                                    products: this.products,
+                                    groupePre: []
+                                }
+                                this.listOfEvent[i].events.push(newEv)
+                                break;
+                            }
+                        }
                     }
                 }
            }

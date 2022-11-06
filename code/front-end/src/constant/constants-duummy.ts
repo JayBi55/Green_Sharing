@@ -93,7 +93,7 @@ export const listOfEvent = [
         farmerId: 'marc01',
         events: [
             {
-                num:1,
+                num:'1',
                 startDate: '2022-11-12',
                 endDate: '2022-11-12',
                 adresse: '423 rue Maryland',
@@ -102,7 +102,7 @@ export const listOfEvent = [
                 groupePre: ['Anybody']
             },
             {
-                num:2,
+                num:'2',
                 startDate: '2022-11-08',
                 endDate: '2022-11-20',
                 adresse: '423 rue Maryland',
@@ -111,7 +111,7 @@ export const listOfEvent = [
                 groupePre: ['Only adults']
             },
             {
-                num:3,
+                num:'3',
                 startDate: '2022-11-10',
                 endDate: '2022-11-10',
                 adresse: '1234 rue Jean Montreal',
@@ -125,7 +125,7 @@ export const listOfEvent = [
         farmerId: 'luffy01',
         events: [
             {
-                num:1,
+                num:'1',
                 startDate: '2022-11-10',
                 endDate: '2022-11-10',
                 adresse: '2345 Av de Wano',
@@ -139,7 +139,8 @@ export const listOfEvent = [
 ] 
 
 export let listofCreatedEvents = [
-    {
+    {   
+        farmerId: 'Luffy D Monkey',
         startDate: '2022-11-10',
         endDate: '2022-11-10',
         adresse: '2345 Av de Wano',
@@ -148,6 +149,7 @@ export let listofCreatedEvents = [
         groupePre: ['Anybody']
     },
     {
+        farmerId: 'Marc Gragnir',
         startDate: '2022-11-12',
         endDate: '2022-11-12',
         adresse: '423 rue Maryland',
@@ -156,6 +158,7 @@ export let listofCreatedEvents = [
         groupePre: ['Anybody']
     },
     {
+        farmerId: 'Marc Gragnir',
         startDate: '2022-11-08',
         endDate: '2022-11-20',
         adresse: '423 rue Maryland',
@@ -164,6 +167,7 @@ export let listofCreatedEvents = [
         groupePre: ['Only adults']
     },
     {
+        farmerId: 'Marc Gragnir',
         startDate: '2022-11-10',
         endDate: '2022-11-10',
         adresse: '1234 rue Jean Montreal',
@@ -172,6 +176,7 @@ export let listofCreatedEvents = [
         groupePre: ['Kid friendly', 'students', 'Only adults']
     },
     {
+        farmerId: 'Pierre Emile',
         startDate: '2022-11-11',
         endDate: '2022-11-13',
         adresse: '1234 rue Jean Montreal',
@@ -180,6 +185,7 @@ export let listofCreatedEvents = [
         groupePre: ['Kid friendly', 'students']
     },
     {
+        farmerId: 'Pierre Emile',
         startDate: '2022-11-14',
         endDate: '2022-11-20',
         adresse: '1234 rue Jean Montreal',
@@ -188,6 +194,7 @@ export let listofCreatedEvents = [
         groupePre: ['Only adults']
     },
     {
+        farmerId: 'Pierre Emile',
         startDate: '2022-11-14',
         endDate: '2022-11-15',
         adresse: '1234 rue Jean Montreal',
