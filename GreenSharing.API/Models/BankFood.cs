@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Models
 {
+    [Table("BankFood", Schema = "identity")]
     public class BankFood
     {
         public Guid Id { get; set; }

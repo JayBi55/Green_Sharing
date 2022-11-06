@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace GreenSharing.API.Models
 {
+    [Table("Gleaner", Schema = "identity")]
     public class Gleaner
     {
         public Guid Id { get; set; }

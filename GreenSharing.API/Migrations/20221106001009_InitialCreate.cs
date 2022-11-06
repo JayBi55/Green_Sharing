@@ -7,6 +7,12 @@ namespace GreenSharing.API.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "identity");
+
+            migrationBuilder.EnsureSchema(
+                name: "location");
+
             migrationBuilder.CreateTable(
                 name: "AccountType",
                 columns: table => new
@@ -52,6 +58,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Account",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -63,6 +70,10 @@ namespace GreenSharing.API.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SurName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsConsentAccepted = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DisabledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ConsentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -102,6 +113,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AccountLocation",
+                schema: "location",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -119,6 +131,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_AccountLocation_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -126,6 +139,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BankFood",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -140,6 +154,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_BankFood_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -147,6 +162,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Farmer",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -161,6 +177,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_Farmer_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -168,6 +185,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Gleaner",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -183,6 +201,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_Gleaner_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -206,6 +225,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_BankFoodProductConsumable_BankFood_BankFoodId",
                         column: x => x.BankFoodId,
+                        principalSchema: "identity",
                         principalTable: "BankFood",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -233,12 +253,14 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_BankFoodReview_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BankFoodReview_BankFood_BankFoodId",
                         column: x => x.BankFoodId,
+                        principalSchema: "identity",
                         principalTable: "BankFood",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -261,6 +283,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_FarmerProduct_Farmer_FarmerId",
                         column: x => x.FarmerId,
+                        principalSchema: "identity",
                         principalTable: "Farmer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -288,12 +311,14 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_FarmerReview_Account_AccountID",
                         column: x => x.AccountID,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_FarmerReview_Farmer_FarmerID",
                         column: x => x.FarmerID,
+                        principalSchema: "identity",
                         principalTable: "Farmer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -315,12 +340,14 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_GleanerReview_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GleanerReview_Gleaner_GleanerId",
                         column: x => x.GleanerId,
+                        principalSchema: "identity",
                         principalTable: "Gleaner",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -379,6 +406,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_EventReview_Account_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "identity",
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -413,6 +441,7 @@ namespace GreenSharing.API.Migrations
                     table.ForeignKey(
                         name: "FK_EventSubscription_Gleaner_GleanerId",
                         column: x => x.GleanerId,
+                        principalSchema: "identity",
                         principalTable: "Gleaner",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -420,16 +449,19 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_AccountTypeId1",
+                schema: "identity",
                 table: "Account",
                 column: "AccountTypeId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountLocation_AccountId",
+                schema: "location",
                 table: "AccountLocation",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankFood_AccountId",
+                schema: "identity",
                 table: "BankFood",
                 column: "AccountId");
 
@@ -485,6 +517,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Farmer_AccountId",
+                schema: "identity",
                 table: "Farmer",
                 column: "AccountId");
 
@@ -510,6 +543,7 @@ namespace GreenSharing.API.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gleaner_AccountId",
+                schema: "identity",
                 table: "Gleaner",
                 column: "AccountId");
 
@@ -532,7 +566,8 @@ namespace GreenSharing.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AccountLocation");
+                name: "AccountLocation",
+                schema: "location");
 
             migrationBuilder.DropTable(
                 name: "BankFoodProductConsumable");
@@ -553,13 +588,15 @@ namespace GreenSharing.API.Migrations
                 name: "GleanerReview");
 
             migrationBuilder.DropTable(
-                name: "BankFood");
+                name: "BankFood",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "Event");
 
             migrationBuilder.DropTable(
-                name: "Gleaner");
+                name: "Gleaner",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "EventPriority");
@@ -568,13 +605,15 @@ namespace GreenSharing.API.Migrations
                 name: "FarmerProduct");
 
             migrationBuilder.DropTable(
-                name: "Farmer");
+                name: "Farmer",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Account");
+                name: "Account",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "ProductType");

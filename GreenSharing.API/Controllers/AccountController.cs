@@ -1,6 +1,8 @@
 ﻿using GreenSharing.API.Dtos;
 using GreenSharing.API.Models;
+using log4net;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,9 +18,14 @@ namespace GreenSharing.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        //Contexte permet de Query la DB
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AccountController));
+
+        public PasswordHasher<string> passwordHasser = new PasswordHasher<string>();
+
+        //MANDTORY: Contexte permet de Query la DB
         private readonly GreenSharingContext _context;
 
+        //MANDTORY
         public AccountController(GreenSharingContext context)
         {
             _context = context;
@@ -33,6 +40,7 @@ namespace GreenSharing.API.Controllers
             try
             {
                 //TODO: Logique de Login
+               
             }
             catch (Exception e)
 
@@ -45,9 +53,37 @@ namespace GreenSharing.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(Account), 200)]
+        [ProducesResponseType(typeof(void), 400)]
+        public async Task<IActionResult> Create([FromBody] Account account)
+        {
+            try
+            {
+                //TODO: A FAIRE ceci est juste un exemple ! pour montrer lùtilisation direct du Contexte de la BD
+                account.Password = passwordHasser.HashPassword(account.Id.ToString(), account.Password);
+                account.CreationDate = DateTime.UtcNow;
+                account.IsActive = true;
+                account.IsEnabled = false;
+                account.IsDeleted = false;
+
+                await _context.Account.AddAsync(account);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+
+            {
+                return BadRequest(e);
+            }
+
+            return Ok(account);
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(IEnumerable<Account>), 200)]
         [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> All([FromBody] LoginDTO loginDto)
+        public async Task<IActionResult> GetAll([FromBody] LoginDTO loginDto)
         {
             var accounts = new List<Account>();
             try
@@ -82,24 +118,6 @@ namespace GreenSharing.API.Controllers
             }
 
             return Ok(account);
-        }
-
-        // POST api/<AccountController>
-        [HttpPost]
-        public void Post([FromBody] Account account)
-        {
-        }
-
-        // PUT api/<AccountController>/5
-        [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] Account account)
-        {
-        }
-
-        // DELETE api/<AccountController>/5
-        [HttpDelete("{id}")]
-        public void Delete(Guid accountId)
-        {
         }
     }
 }

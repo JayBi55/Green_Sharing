@@ -49,6 +49,18 @@ namespace GreenSharing.API.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsConsentAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,7 +80,7 @@ namespace GreenSharing.API.Migrations
 
                     b.HasIndex("AccountTypeId1");
 
-                    b.ToTable("Account");
+                    b.ToTable("Account", "identity");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Models.AccountLocation", b =>
@@ -102,7 +114,7 @@ namespace GreenSharing.API.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("AccountLocation");
+                    b.ToTable("AccountLocation", "location");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Models.AccountType", b =>
@@ -154,7 +166,7 @@ namespace GreenSharing.API.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("BankFood");
+                    b.ToTable("BankFood", "identity");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Models.BankFoodProductConsumable", b =>
@@ -370,7 +382,7 @@ namespace GreenSharing.API.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Farmer");
+                    b.ToTable("Farmer", "identity");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Models.FarmerProduct", b =>
@@ -455,7 +467,7 @@ namespace GreenSharing.API.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.ToTable("Gleaner");
+                    b.ToTable("Gleaner", "identity");
                 });
 
             modelBuilder.Entity("GreenSharing.API.Models.GleanerReview", b =>

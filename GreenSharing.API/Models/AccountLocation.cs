@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace GreenSharing.API.Models
 {
+    [Table("AccountLocation", Schema = "location")]
     public class AccountLocation
     {
         public Guid Id { get; set; }
