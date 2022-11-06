@@ -5,17 +5,20 @@ using System.Threading.Tasks;
 
 namespace GreenSharingAPI.Models
 {
+    /// <summary>
+    /// Produits offerts par le Fermier
+    /// </summary>
     public class FarmerProduct
     {
         public Guid Id { get; set; }
         public string   Notes { get; set; }
         public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
         //FK
-        public Guid FarmerID { get; set; }
-        public Guid ProductID { get; set; }
+        public Guid FarmerId { get; set; }
+        public Guid ProductId { get; set; }
 
         public virtual Farmer Farmer { get; set; }
-        public virtual Produit product{ get; set; }
+        public virtual Product Product { get; set; }
     }
 }
