@@ -20,7 +20,7 @@
      <div v-else-if="userConnected === 'Food Banks'">
      </div>
      <div v-else class="nom-equipe">
-        <h3>Prototype développer par Team 11 - MORGAN STANLEY</h3>
+        <h3>Prototype dévellopé par Team 11 - MORGAN STANLEY</h3>
      </div>
     </div>
 </template>
