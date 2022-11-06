@@ -9,7 +9,7 @@
     <Company>Morgan Stanley</Company>
     <StartupObject>GreenSharing.API.Program</StartupObject>
     <Copyright>Morgan Stanley</Copyright>
-    <Description>Morgan Stanley Green Sharing Web API</Description>
+    <Description>Morgan Stanley Green Sharing Web API for Earth day</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +34,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 
