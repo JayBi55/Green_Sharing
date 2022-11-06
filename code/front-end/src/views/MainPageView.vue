@@ -4,6 +4,10 @@
         <TransitorieBar :userConnected="getUser"/>
         <div class="row">
             <div class="col-7">
+                <div class="d-flex align-items-center ms-5">
+                    <GoogleMap class="m-5"/>
+                </div>
+                
                 <div v-if="userStore.userType==='Farmer'">
                     <h2>{{userStore.userName}}, those are the events you create</h2>
                     <hr/>
@@ -115,13 +119,14 @@
                 </div>
             </div>
         </div>
-        <FooterVue style="bottom:0"/>
+        <FooterVue style="bottom:-100"/>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MainBar from '@/components/MainBar.vue';
+import GoogleMap from '@/components/GoogleMap.vue';
 import TransitorieBar from '@/components/TransitorieBar.vue';
 import FooterVue from '@/components/FooterVue.vue';
 import {listEventRegistred, listEventConfirm, listofCreatedEvents, listOfEvent} from '@/constant/constants-duummy'
@@ -130,7 +135,7 @@ import FarmerTableVue from '@/components/FarmerTableVue.vue';
 
 export default defineComponent({
     name:'MainPageView',
-    components: {MainBar, TransitorieBar,FooterVue, FarmerTableVue },
+    components: {MainBar, TransitorieBar,FooterVue, GoogleMap, FarmerTableVue },
     setup() {
         const userStore = useUserStore();
         return {
@@ -149,7 +154,7 @@ export default defineComponent({
             return ''
         }
     },
-    data() {
+        data() {
         return {
 
         }
