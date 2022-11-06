@@ -16,8 +16,9 @@ using System.Threading.Tasks;
 
 namespace GreenSharing.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+    [Route("api/[controller]/[action]")]
     public class AccountController : ControllerBase
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(AccountController));
@@ -114,7 +115,7 @@ namespace GreenSharing.API.Controllers
         }
 
         // GET api/<AccountController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{accountId}")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(Account), 200)]
         [ProducesResponseType(typeof(void), 400)]
