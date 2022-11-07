@@ -17,7 +17,7 @@
                             <li><a href="#">Team 11</a></li>
                         </ul>
                     </div>
-                    <div id="partenaire" class="col-md-6 item text">
+                    <div class="col-md-6 item text">
                         <h3>Affiliate-Partner</h3>
                         <h4>Morgan Stanley</h4>
                         <h4>Jour de la terre</h4>

@@ -41,7 +41,7 @@ import { useUserStore } from "@/stores/user";
 import { userConstants } from "@/constant/UsersConstants";
 
 export default defineComponent({
-  name: "LogInView",
+  name: "Register",
   setup() {
     const userStore = useUserStore();
     return {

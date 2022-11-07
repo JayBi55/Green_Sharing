@@ -133,16 +133,14 @@
                             <p><b>Comment:</b>I recommend it, it's worth it and it's for a good cause.</p>
                         </article>
                     </article>
-                </div>
-                <div class="stat">
+                    <div class="stat">
+                        <h1>Gleaning statistics</h1>
 
-                    <h1>Gleaning statistics</h1>
-
-                    <div class="half-arc" style="--percentage:25%;">
-                        <span class="label">25%</span>
+                        <div class="half-arc" style="--percentage:25%;">
+                            <span class="label">25%</span>
+                        </div>
+                        <p class="text">Here the percentage increase in gleaning in recent months.</p>
                     </div>
-                    <p class="text">Here the percentage increase in gleaning in recent months.</p>
-
                 </div>
                 
             </div>
@@ -322,6 +320,7 @@ export default defineComponent({
     color: #673ab7;
     z-index: 3;
     text-align: center;
+    position: static;
 }
 .text{
     color: #142530;
