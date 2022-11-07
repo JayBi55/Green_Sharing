@@ -64,7 +64,7 @@ namespace GreenSharing.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(Account), 200)]
         [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> Create([FromBody] AccountDTO accountDto)
+        public async Task<IActionResult> CreateAccount([FromBody] AccountDTO accountDto)
         {
             Account accountCreated = null;
             try
@@ -74,50 +74,73 @@ namespace GreenSharing.API.Controllers
                 AccountType accountType = await _accountTypeRepository.FindAsync(x => (/*x.Id == accountDto.AccountTypeId ||*/ x.Name.ToLower() == accountDto.AccountTypeName.ToLower()));
                 if (accountType == null)
                 {
-                    //TODO: Throw ...l'accountType n'existe pas !                
+                    //TODO: Throw ...l'accountType n'existe pas !
+                    accountType = await _accountTypeRepository.FindAsync(x => (x.Id == AccountType.GleanerId));
                 }
-                else
+                //
+
+                //Map DTO to Entity
+                accountCreated = accountDto.ToEntity<AccountDTO, Account>();
+
+                //2. Create the Account attaching its AccounType
+                accountCreated.AccountType = accountType;
+                accountCreated.AccountTypeId = accountType.Id;
+                accountCreated.IsActive = true;
+                accountCreated.IsDeleted = false;
+                accountCreated.IsConsentAccepted = true;
+
+                if (accountDto.AccountLocationDtos.Any())
                 {
-                    var account = accountDto.ToEntity<AccountDTO, Account>();
-                    //2. Create the Account attaching its AccounType
-                    account.AccountType = accountType;
-                    account.AccountTypeId = accountType.Id;
-                    account.IsActive = true;
-                    account.IsDeleted = false;
-                    account.IsConsentAccepted = true;
-                    if (accountDto.AccountLocationDtos.Any())
+                    accountCreated.AccountLocations = new List<AccountLocation>();
+                    foreach (var location in accountDto.AccountLocationDtos)
                     {
-                        account.AccountLocations = new List<AccountLocation>();
-                        foreach(var location in accountDto.AccountLocationDtos)
+                        var accountLocation = location.ToEntity<AccountLocationDTO, AccountLocation>();
+                        accountLocation.IsActive = true;
+                        accountLocation.IsDeleted = false;
+
+                        var addresType = await _addresTypeRepository.FindAsync(x => x.Name.ToLower() == location.AddressTypeName.ToLower());
+
+                        if (addresType == null)
                         {
-                            var accountLocation = location.ToEntity<AccountLocationDTO, AccountLocation>();
-                            accountLocation.IsActive = true;
-                            accountLocation.IsDeleted = false;
-
-                            var addresType = await _addresTypeRepository.FindAsync(x => x.Name.ToLower() == location.AddressTypeName.ToLower());
-
-                            if (addresType == null) {
-                                accountLocation.AddressTypeId = AddressType.PrimaryId;
-                            }
-                            else
-                            {
-                                accountLocation.AddressType = addresType;
-                                accountLocation.AddressTypeId = addresType.Id;
-                            }
-
-                            account.AccountLocations.Add(accountLocation);
+                            //TODO: Patch
+                            accountLocation.AddressTypeId = AddressType.PrimaryId;
+                            addresType = await _addresTypeRepository.FindAsync(x => x.Id == AddressType.PrimaryId);
                         }
-                    }
-                    var result = await _accountRepository.CreateAsync(account);
 
-                    //3. If there is Any AccountLocation Specified and createe it
-                    //Creates Location if provided !
-                    if (account.AccountLocations.Any()) {
-                        foreach (var location in account.AccountLocations) {
-                            await _accountLocationRepository.CreateOrUpdateAsync(location);
-                        }
+                        accountLocation.AddressType = addresType;
+                        accountLocation.AddressTypeId = addresType.Id;
+
+                        accountCreated.AccountLocations.Add(accountLocation);
                     }
                 }
+
+                var result = await _accountRepository.CreateAsync(accountCreated);
+
+                //3. If there is Any AccountLocation Specified and createe it
+                //Creates Location if provided !
+                /*if (accountDto.AccountLocationDtos.Any())
+                {
+                    foreach (var location in accountDto.AccountLocationDtos)
+                    {
+                        var accountLocation = location.ToEntity<AccountLocationDTO, AccountLocation>();
+                        accountLocation.IsActive = true;
+                        accountLocation.IsDeleted = false;
+
+                        var addresType = await _addresTypeRepository.FindAsync(x => x.Name.ToLower() == location.AddressTypeName.ToLower());
+
+                        if (addresType == null)
+                        {
+                            accountLocation.AddressTypeId = AddressType.PrimaryId;
+                        }
+                        else
+                        {
+                            accountLocation.AddressType = addresType;
+                            accountLocation.AddressTypeId = addresType.Id;
+                        }
+
+                        await _accountLocationRepository.CreateOrUpdateAsync(accountLocation);
+                    }
+                }*/
             }
             catch (Exception e)
 

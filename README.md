@@ -84,3 +84,52 @@ Resources and requirements :
 ## Green_Sharing
 
 EntityFrameworkCore\Add-Migration InitialCreate -Context GreenSharingContext -Project  GreenSharing.API -StartupProject GreenSharing.API -Verbose
+
+## Query Sample
+* **AccountController.Login**
+``{
+  "email": "gleaner@yopmail.com",
+  "password": "MS@Gleaner2022",
+  "deviceId": "string",
+  "rememberMe": true
+}
+``
+* **AccountController.Create Account**
+``
+{
+  "accountTypeName": "Famer",
+  "userName": "marcelsnews",
+  "password": "marcelsnews",
+  "email": "marcelsnews@yopmail.com",
+  "phoneNumber": "4389587896",
+  "faxNumber": "4389587898",
+  "firstName": "Marcel",
+  "lastName": "T.",
+  "surName": "Newton",
+  "isEnabled": true,
+  "isActive": true,
+  "isDeleted": true,
+  "isConsentAccepted": true,
+  "creationDate": "2022-11-07T18:17:18.226Z",
+  "disabledDate": "2022-11-07T18:17:18.226Z",
+  "consentDate": "2022-11-07T18:17:18.226Z",
+  "accountLocationDtos": [
+    {
+      "addressTypeName": "string",
+      "title": "string",
+      "country": "Canada",
+      "state": "Quebec",
+      "city": "Montreal",
+      "street": "Marcel-Laurin",
+      "door": "1040",
+      "zipCode": "H3S1G3",
+      "address": "string",
+      "latitude": 0,
+      "longtitude": 0,
+      "isActive": true,
+      "isDeleted": true
+    }
+  ]
+}
+``
+
