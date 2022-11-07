@@ -16,6 +16,9 @@ Earth Day expressed a need for application that could help :
 
 
 ## The solution: Green Sharing
+## Implementation:
+1. FrontEnd
+2. BackEnd
 
  
 
