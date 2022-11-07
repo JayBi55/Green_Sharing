@@ -19,7 +19,6 @@
           <div></div><div class="d-flex justify-content-between"  >
                         <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
                         <a href="#"><img src="@/assets/gmail.png" alt="gmail" width="50px" height="50px"><i class="icon ion-social-twitter"></i></a>
-                        <a href="#"><img src="@/assets/insta-logo.png" alt="insta" width="50px" height="50px"><i class="icon ion-social-instagram"></i></a>
                         <a href="#"><img src="@/assets/google.png" alt="google" width="50px" height="50px"><i class="icon ion-social-linkedin"></i></a>
           </div>
 
