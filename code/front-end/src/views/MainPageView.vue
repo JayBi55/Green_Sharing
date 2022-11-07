@@ -139,9 +139,7 @@
                     </article>
                 </div>
                 <h1 style="color:black">Gleaning statistics</h1>
-                <div class="stat" >
-                       
-
+                <div class="d-flex justify-content-between" >
                         <div class="half-arc" style="--percentage:25%;">
                             <span class="label">25%</span>
                         </div>
