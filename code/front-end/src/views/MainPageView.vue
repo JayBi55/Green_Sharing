@@ -128,7 +128,7 @@
                         <article class="event2">
                             <h2>05 October 2022- Pierre Event</h2>
                             <p><b>Comment:</b>The gleaners <b>@Marie33</b>
-                                 wa so nice.</p>
+                                 was so nice.</p>
                         </article>
                         <article class="event3">
                             <h2>05 October 2022 - Emile Event</h2>

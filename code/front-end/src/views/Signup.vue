@@ -20,7 +20,7 @@
     <input type="text" v-model="surname" />
         <label >Fax Number : </label>
     <input type="text" v-model="faxnumber" />
-        <Label>Account Type : </Label>
+        <Label style="margin-right:16px">Account Type : </Label>
         <select v-model="Acctype" required>
             <option value="farmer">Farmer</option>
             <option value="volunteer">Volunteer</option>
@@ -29,6 +29,13 @@
         <div class="createacc"><button type="submit" class="registerbtn" @click="" style="margin-right:16px">
           Create Account
         </button></div>
+
+              <div class="oralign"  ><p>- - OR - -</p></div>
+          <div></div><div class="d-flex justify-content-between"  >
+                        <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
+                        <a href="#"><img src="@/assets/Apple.png" alt="gmail" width="58px" height="58px"><i class="icon ion-social-apple"></i></a>
+                        <a href="#"><img src="@/assets/google.png" alt="google" width="50px" height="50px"><i class="icon ion-social-google"></i></a>
+          </div>
 </form></div></div>
 </template>
 
@@ -131,8 +138,14 @@ button{
 }
 .createacc{
     text-align: center;
-    top:10px
+    top:17px
 }
-
+.oralign{
+  font-size:1.5em;
+  text-align: center;
+  padding: 20px 30px;
+  margin-bottom:10px;
+  top: 0.5em;
+}
 </style>
 
