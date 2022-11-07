@@ -346,7 +346,6 @@ p{
 .stat{
    position:relative;
    box-sizing: border-box;
-   position:fixed
 
 }
 </style>

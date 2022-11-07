@@ -165,15 +165,17 @@ a {
 }
 .social{
   font-size:12em;
-        width:3em;
-        height:1em;
-        line-height:0em;
-        display:inline-block;
-        text-align:center;
-        border-radius:50%;
-        box-shadow:0 0 0 1px rgba(255,255,255,0.4);
-        color:#fff;
-        opacity:0.75;
+  width:3em;
+  height:1em;
+  line-height:0em;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+  color:#fff;
+  opacity:0.75;
+  display: block;
+  position: relative;
 }
 h2{
   color:#142530;
