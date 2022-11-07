@@ -11,9 +11,12 @@ namespace GreenSharing.API.Dtos
         public static readonly string Secondary = "Secondary";
         public static readonly string Other = "Other";
 
+        public string AddressTypeName { get; set; }
+
         public string Title { get; set; }  //Mr, Sir, Miss ...
         public string Country { get; set; }
         public string State { get; set; }
+        
         public string City { get; set; }
         public string Street { get; set; }
         public string Door { get; set; }

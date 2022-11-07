@@ -27,15 +27,18 @@ namespace GreenSharing.API.Controllers
         //Generic Repositories For Tables/Models where we do only CreateAsync ReadAsync UpdateAsync DeleteAsync GetAllAsync 
         private readonly IGenericRepository<AccountType> _accountTypeRepository;
         private readonly IGenericRepository<AccountLocation> _accountLocationRepository;
+        private readonly IGenericRepository<AddressType> _addresTypeRepository;
 
         //MANDTORY
         public AccountController(IAccountRepository accountRepository,
             IGenericRepository<AccountType> accountTypeRepository, 
-            IGenericRepository<AccountLocation> accountLocationRepository)
+            IGenericRepository<AccountLocation> accountLocationRepository,
+            IGenericRepository<AddressType> addresTypeRepository)
         {
             _accountRepository = accountRepository;
             _accountTypeRepository = accountTypeRepository;
             _accountLocationRepository = accountLocationRepository;
+            _addresTypeRepository = addresTypeRepository;
         }
 
         [HttpPost]
@@ -79,12 +82,30 @@ namespace GreenSharing.API.Controllers
                     //2. Create the Account attaching its AccounType
                     account.AccountType = accountType;
                     account.AccountTypeId = accountType.Id;
+                    account.IsActive = true;
+                    account.IsDeleted = false;
+                    account.IsConsentAccepted = true;
                     if (accountDto.AccountLocationDtos.Any())
                     {
                         account.AccountLocations = new List<AccountLocation>();
                         foreach(var location in accountDto.AccountLocationDtos)
                         {
-                            account.AccountLocations.Add(location.ToEntity<AccountLocationDTO, AccountLocation>());
+                            var accountLocation = location.ToEntity<AccountLocationDTO, AccountLocation>();
+                            accountLocation.IsActive = true;
+                            accountLocation.IsDeleted = false;
+
+                            var addresType = await _addresTypeRepository.FindAsync(x => x.Name.ToLower() == location.AddressTypeName.ToLower());
+
+                            if (addresType == null) {
+                                accountLocation.AddressTypeId = AddressType.PrimaryId;
+                            }
+                            else
+                            {
+                                accountLocation.AddressType = addresType;
+                                accountLocation.AddressTypeId = addresType.Id;
+                            }
+
+                            account.AccountLocations.Add(accountLocation);
                         }
                     }
                     var result = await _accountRepository.CreateAsync(account);

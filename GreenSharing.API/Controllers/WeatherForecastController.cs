@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GreenSharing.API.Dtos;
+using GreenSharing.API.Extensions;
+using GreenSharing.API.Repositories.DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,6 +38,27 @@ namespace GreenSharing.API.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(Account), 200)]
+        [ProducesResponseType(typeof(void), 400)]
+        public async Task<IActionResult> MapAccount([FromBody] AccountDTO accountDto)
+        {
+            Account account = null;
+            try
+            {
+                //TODO
+                account = accountDto.ToEntity<AccountDTO, Account>();
+            }
+            catch (Exception e)
+
+            {
+                return BadRequest(e);
+            }
+
+            return Ok(account);
         }
     }
 }
