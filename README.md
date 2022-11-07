@@ -1,6 +1,6 @@
 # Morgan Stanley Hackathon novembre 2022
 ## Project: Earth Day Canada
-## Team 11: Green Sta
+## Team 11: Green Sharing
 * Abdoul Sadikou <br />  			
 * Bassel Assi  <br />
 * Jeanne Audrey Mboua Bitoungui <br />
@@ -10,6 +10,7 @@
 
 **Mentor** : Marcel Tawé  <br />
 
+## Project artifact
 * Morgan Stanley Project : https://codetogive.bemyapp.com/#/projects/636478762b5a55720fb83e7a <br />
 * Front-end Green Sharing : https://green-sharing.netlify.app/ <br />
 * Back-end Green Sharing : https://greensharingapi.azurewebsites.net/swagger/index.html <br />
