@@ -1,4 +1,5 @@
 ﻿using GreenSharing.API.Dtos;
+using GreenSharing.API.Extensions;
 using GreenSharing.API.Repositories.DataAccessLayer.Models;
 using GreenSharing.API.Repositories.Interface;
 using log4net;
@@ -60,22 +61,32 @@ namespace GreenSharing.API.Controllers
         [AllowAnonymous]
         [ProducesResponseType(typeof(Account), 200)]
         [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> Create([FromBody] Account account)
+        public async Task<IActionResult> Create([FromBody] AccountDTO accountDto)
         {
             Account accountCreated = null;
             try
             {
                 //1. Find the AccounType related
                 //Farmer, Gleaner, BankFood
-                AccountType accountType = await _accountTypeRepository.FindAsync(x => (x.Id == account.AccountTypeId || x.Name.ToLower() == account.AccountTypeName.ToLower()));
+                AccountType accountType = await _accountTypeRepository.FindAsync(x => (/*x.Id == accountDto.AccountTypeId ||*/ x.Name.ToLower() == accountDto.AccountTypeName.ToLower()));
                 if (accountType == null)
                 {
                     //TODO: Throw ...l'accountType n'existe pas !                
                 }
                 else
                 {
+                    var account = accountDto.ToEntity<AccountDTO, Account>();
                     //2. Create the Account attaching its AccounType
                     account.AccountType = accountType;
+                    account.AccountTypeId = accountType.Id;
+                    if (accountDto.AccountLocationDtos.Any())
+                    {
+                        account.AccountLocations = new List<AccountLocation>();
+                        foreach(var location in accountDto.AccountLocationDtos)
+                        {
+                            account.AccountLocations.Add(location.ToEntity<AccountLocationDTO, AccountLocation>());
+                        }
+                    }
                     var result = await _accountRepository.CreateAsync(account);
 
                     //3. If there is Any AccountLocation Specified and createe it
