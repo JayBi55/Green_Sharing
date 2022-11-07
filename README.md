@@ -8,7 +8,11 @@ Myyank Shukla <br />
 Marguerite Mireille Camara <br />
 Van Nam Vu <br />
 
-Link Morgan Stanley Project : https://codetogive.bemyapp.com/#/projects/636478762b5a55720fb83e7a
+Morgan Stanley Project : https://codetogive.bemyapp.com/#/projects/636478762b5a55720fb83e7a
+Front-end Green Sharing : https://green-sharing.netlify.app/
+Back-end Green Sharing : https://greensharingapi.azurewebsites.net/swagger/index.html
+MCD-SAX-ML models Diagrams : https://app.diagrams.net/#G1J_-efr0K0X03nbX8w-cENkyHh6ZV7eTP
+Figma design : https://www.figma.com/file/TqOf0pTMOZGpH9VtUyGTqs/CGT-T11?node-id=0%3A1
 
 ##  The Problem: 
 
@@ -45,10 +49,11 @@ Carpooling capabilities between gleaners
 **1.  FrontEnd** <br /> 
 Read the readMe_frontE in the repository **front-end** for a better understanding of this part  <br /> 
 **2.  BackEnd**  <br /> 
-Read the readMe  in the repository **GreenSharing.API** for a better understanding of this part
- 
-
-
+Resources and requirements :
+.NET 5.0
+.ASPNetCore
+.EntityFrameWorkCore
+Azure Cloud
 
 
 
@@ -56,9 +61,6 @@ Read the readMe  in the repository **GreenSharing.API** for a better understandi
 
 * In **Green_pics** we have all the pictures taken during the project.
 * **Delivery:** All the documents that needs to be consulted by the client
-
-
-
 
 
 
