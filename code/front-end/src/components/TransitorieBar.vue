@@ -12,8 +12,8 @@
         <h2 class="mb-3">Good morning {{userStore.userName}}</h2>
         <div class="col-8 d-flex justify-content-between">
              <button class="button-event-farmer" style="background-color: #003778;" @click="createEvent()">Create an event</button>
-            <button class="button-event-farmer" style="background-color: #F9AC28;">Update an event</button>
-            <button class="button-event-farmer" style="background-color: red;">Delete an event</button>
+            <button class="button-event-farmer" style="background-color: #cc6600;">Update an event</button>
+            <button class="button-event-farmer" style="background-color: #B22222;">Delete an event</button>
         </div>
      </div>
 
