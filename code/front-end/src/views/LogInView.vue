@@ -13,7 +13,7 @@
             <input type="password" placeholder="Enter Password" v-model="password" name="psw" id="psw" required>
           </div>
           <hr>
-          <div class="social" style="position:relative">
+          <div class="d-flex justify-content-between">
                         <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
                         <a href="#"><img src="@/assets/gmail.png" alt="gmail" width="50px" height="50px"><i class="icon ion-social-twitter"></i></a>
                         <a href="#"><img src="@/assets/insta-logo.png" alt="insta" width="50px" height="50px"><i class="icon ion-social-instagram"></i></a>
