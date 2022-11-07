@@ -139,11 +139,8 @@
                     </article>
                 </div>
                 <h1 style="color:black">Gleaning statistics</h1>
-                <div class="d-flex justify-content-between" >
-                        <div class="half-arc" style="--percentage:25%;">
-                            <span class="label">25%</span>
-                        </div>
-                        <p class="text">Here the percentage increase in gleaning in recent months.</p>
+                <div class="stat" >
+                    <p class="text">Here the percentage increase in gleaning in recent months.</p>
                 </div>
                 
             </div>
@@ -340,10 +337,5 @@ export default defineComponent({
 }
 p{
     position: relative;
-}
-.stat{
-   position:relative;
-   box-sizing: border-box;
-
 }
 </style>
