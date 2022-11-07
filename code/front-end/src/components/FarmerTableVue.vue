@@ -1,5 +1,5 @@
 <template>
-    <h4>Upcoming Events.</h4>
+    <h4 style="color:black">Upcoming Events.</h4>
         <table class="table table-striped table-dark thead-dark">
             <thead style="background-color:black">
                         <th scope="col">Date start</th>

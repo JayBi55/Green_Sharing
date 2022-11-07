@@ -9,9 +9,9 @@
                 </div>
                 
                 <div v-if="userStore.userType==='Farmer'">
-                    <h2>{{userStore.userName}}, those are the events you create</h2>
+                    <h2 style="color:black">{{userStore.userName}}, those are the events you create</h2>
                     <hr/>
-                    <table class="table table-striped thead-dark">
+                    <table class="table table-striped thead-dark" style="position:relative; width: max-content;">
                         <thead style="background-color:black; color:white">
                             <th scope="col">#</th>
                             <th scope="col">Date Start</th>
@@ -29,7 +29,7 @@
                                 <td>{{list.adresse}}</td>
                                 <td>{{list.priority}}</td>
                                 <td>{{list.products}}</td>
-                                <td>
+                                <td style="position:relative">
                                     <button class="me-3" style="background-color:#003778; color:white; border-radius: 10px;">Confirm</button>
                                     <button  class="me-3" style="background-color:#003778; color:white; border-radius: 10px;">Complete</button>
                                     <button  class="ms-3" style="background-color:#003778; color:white; border-radius: 10px;">Review</button>
@@ -40,8 +40,8 @@
                         </tbody>
                     </table>
                 </div>
-                <h2>Here are all the events.</h2>
-                <table class="table table-striped thead-dark">
+                <h2  style="color:black">Here are all the events.</h2>
+                <table class="table table-striped thead-dark" style="position:relative">
                     <thead style="background-color:black; color:white">
                         <th scope="col">Farmer Name</th>
                         <th scope="col">Date Start</th>
@@ -68,8 +68,8 @@
             </div>
             <div class="col-5">
                 <div v-if="userStore.userType === 'Benevole'">
-                    <h4>List of events you are already registred.</h4>
-                    <table class="table table-striped table-dark thead-dark">
+                    <h4 style="color:black">List of events you are already registred.</h4>
+                    <table class="table table-striped table-dark thead-dark" style="position:relative">
                         <thead style="background-color:black">
                             <th scope="col">#</th>
                             <th scope="col">Farmer Name</th>
@@ -92,8 +92,8 @@
                     <br/>
                     <hr/>
                     <br/>
-                    <h4>List of events you have confirmations to come.</h4>
-                    <table class="table table-striped table-dark thead-dark">
+                    <h4 style="color:black">List of events you have confirmations to come.</h4>
+                    <table class="table table-striped table-dark thead-dark" style="position:relative">
                         <thead style="background-color:black">
                             <th scope="col">#</th>
                             <th scope="col">Farmer Name</th>
@@ -118,31 +118,34 @@
                     <FarmerTableVue/>
                 </div>
                 <div>
-                    <article class="event">
-                        <h1>Event Article</h1>
+                    <article class="event" style="position:relative">
+                        <h1 style="color:black">Event Article</h1>
                         <article class="event1">
                             <h2>03 March 2022 - Marc Gragnir Event</h2>
-                            <p><b>Comment:</b>The participants had a great time and the harvest was good.</p>
+                            <p><b>Comment:</b>The participants had a great<br>
+                                time and the harvest was good.</p>
                         </article>
                         <article class="event2">
                             <h2>05 October 2022- Pierre Event</h2>
-                            <p><b>Comment:</b>The gleaners <b>@Marie33</b> wa so nice.</p>
+                            <p><b>Comment:</b>The gleaners <b>@Marie33</b>
+                                 wa so nice.</p>
                         </article>
                         <article class="event3">
                             <h2>05 October 2022 - Emile Event</h2>
-                            <p><b>Comment:</b>I recommend it, it's worth it and it's for a good cause.</p>
+                            <p><b>Comment:</b>I recommend it, <br>
+                                it's worth it and it's 
+                                for a good cause.</p>
                         </article>
                     </article>
                 </div>
-                <div class="stat">
+                <h1 style="color:black">Gleaning statistics</h1>
+                <div class="stat" >
+                       
 
-                    <h1>Gleaning statistics</h1>
-
-                    <div class="half-arc" style="--percentage:25%;">
-                        <span class="label">25%</span>
-                    </div>
-                    <p class="text">Here the percentage increase in gleaning in recent months.</p>
-
+                        <div class="half-arc" style="--percentage:25%;">
+                            <span class="label">25%</span>
+                        </div>
+                        <p class="text">Here the percentage increase in gleaning in recent months.</p>
                 </div>
                 
             </div>
@@ -218,6 +221,7 @@ export default defineComponent({
     font-size: 1.2rem;
     width: 100%;
     height: 100px;
+    position:relative;
 }
 
 .event1{
@@ -238,6 +242,7 @@ export default defineComponent({
     font-size: 1.2rem;
     width: 100%;
     height: 100px;
+    position:relative;
 }
 
 .event2{
@@ -258,6 +263,7 @@ export default defineComponent({
     font-size: 1.2rem;
     width: 100%;
     height: 100px;
+    position:relative;
 }
 
 .event3{
@@ -280,7 +286,7 @@ export default defineComponent({
     height: 100px;
     border-top-left-radius: 120px;
     border-top-right-radius: 120px;
-    border-bottom: 0;
+    border-bottom: 0rem;
     background: #d9d9d9;
     box-sizing: border-box;
     overflow: hidden;
@@ -292,7 +298,7 @@ export default defineComponent({
 
 .half-arc:before {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
     top: 0;
     left: 0;
@@ -307,9 +313,9 @@ export default defineComponent({
 
 .half-arc:after {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
-    background: #dddddd;
+    background: #142530;
     z-index: 2;
     width: calc(100% - 32px);
     height: calc(200% - 32px);
@@ -322,8 +328,24 @@ export default defineComponent({
     color: #673ab7;
     z-index: 3;
     text-align: center;
+    position: static;
 }
 .text{
     color: #142530;
+}
+.event{
+    
+    display: block; 
+    margin: .2rem;
+    font-size: 1rem;
+
+}
+p{
+    position: relative;
+}
+.stat{
+   position:relative;
+   box-sizing: border-box;
+
 }
 </style>
