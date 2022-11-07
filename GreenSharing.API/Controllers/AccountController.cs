@@ -103,7 +103,11 @@ namespace GreenSharing.API.Controllers
                         if (addresType == null)
                         {
                             //TODO: Patch
-                            accountLocation.AddressTypeId = AddressType.PrimaryId;
+                            accountLocation.AddressTypeId = addresType.Id = AddressType.PrimaryId;
+                            addresType.NameKey = addresType.NameKey = "Primary";
+                            addresType.IsActive = true;
+                            addresType.IsDeleted = false;
+                            addresType.CreationDate = DateTime.UtcNow;
                             addresType = await _addresTypeRepository.FindAsync(x => x.Id == AddressType.PrimaryId);
                         }
 

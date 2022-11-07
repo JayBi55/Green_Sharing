@@ -37,6 +37,7 @@ namespace GreenSharing.API.Repositories.DataAccessLayer
             modelBuilder.Entity<AccountType>(entity =>
             {
                 entity.HasIndex(e => e.Name).IsUnique();
+                entity.HasIndex(e => e.NameKey).IsUnique();
                 entity.HasData(
                 new AccountType
                 {
@@ -215,6 +216,42 @@ namespace GreenSharing.API.Repositories.DataAccessLayer
                     Name = "Facebook",
                     IsActive = true,
                     IsDeleted = false
+                }
+                );
+            });
+
+            //AddressType
+            modelBuilder.Entity<AddressType>(entity =>
+            {
+                entity.HasIndex(e => e.Name).IsUnique();
+                entity.HasIndex(e => e.NameKey).IsUnique();
+                entity.HasData(
+                new AddressType
+                {
+                    Id = GreenSharing.API.Repositories.DataAccessLayer.Models.AddressType.PrimaryId,
+                    Name = "Primary",
+                    NameKey = "Primary",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreationDate = DateTime.UtcNow
+                },
+                new AddressType
+                {
+                    Id = GreenSharing.API.Repositories.DataAccessLayer.Models.AddressType.SecondaryId,
+                    Name = "Secondary",
+                    NameKey = "Secondary",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreationDate = DateTime.UtcNow
+                },
+                new AddressType
+                {
+                    Id = GreenSharing.API.Repositories.DataAccessLayer.Models.AddressType.OtherId,
+                    Name = "Other",
+                    NameKey = "Other",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreationDate = DateTime.UtcNow
                 }
                 );
             });
