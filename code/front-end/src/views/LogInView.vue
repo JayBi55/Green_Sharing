@@ -15,7 +15,8 @@
           
           <hr>
           <div class="d-flex align-items-center w-20 ms-5">
-            <button type="submit" class="registerbtn" @click="login()">Login</button>
+            <button type="submit" class="registerbtn" @click="login()" style="margin-right:16px" >Login</button>
+            <button type="submit" class="registerbtn" @click="redirectRegister()">Register</button>
           </div>
           
         </div>
@@ -60,7 +61,12 @@ export default defineComponent({
         }
         this.userId=''
         this.password=''
-      }
+      },
+      redirectRegister() {
+                this.$router.push({name:'signup'})
+            
+        }
+      
     }
 })
 </script>
