@@ -4,7 +4,7 @@
           <img src="@/assets/logo_of.jpg" alt="warning" class="logo"/>
           <h1>Green Sharing</h1>
           <hr>
-          <div class="row ms-5">
+          <div class="row ms-5" >
             
             <label for="text" class="label-css"><b>UserID</b></label>
             <input type="text" placeholder="Enter userId"  v-model="userId" name="userId" id="userId" required>
@@ -12,7 +12,6 @@
             <label for="psw" class="label-css"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" v-model="password" name="psw" id="psw" required>
           </div>
-          
           <hr>
           <div class="d-flex align-items-center w-20 ms-5">
             <button type="submit" class="registerbtn" @click="login()" style="margin-right:16px" >Login</button>

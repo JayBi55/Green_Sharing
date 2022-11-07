@@ -4,28 +4,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
+                        <h3>Contact and Informations</h3>
                         <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
+                            <li><a href="#">Mail:xyzteam11@xxx...</a></li>
+                            
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
                         <h3>About</h3>
                         <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Green Sharing</a></li>
+                            <li><a href="#">Team 11</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    <div id="partenaire" class="col-md-6 item text">
+                        <h3>Affiliate-Partner</h3>
+                        <h4>Morgan Stanley</h4>
+                        <h4>Jour de la terre</h4>
                     </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                    <div class="col item social">
+                        <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
+                        <a href="#"><img src="@/assets/twitter1.png" alt="twitter" width="50px" height="50px"><i class="icon ion-social-twitter"></i></a>
+                        <a href="#"><img src="@/assets/insta-logo.png" alt="insta" width="50px" height="50px"><i class="icon ion-social-instagram"></i></a>
+                        <a href="#"><img src="@/assets/linkedin.png" alt="linkedin" width="50px" height="50px"><i class="icon ion-social-linkedin"></i></a>
+                    </div>
                 </div>
-                <p class="copyright">Company Name © 2018</p>
+                <p class="copyright">Green Sharing © 2022</p>
             </div>
         </footer>
     </div>
@@ -128,6 +132,10 @@ export default defineComponent({
         opacity:0.3;
         font-size:13px;
         margin-bottom:0;
+    }
+    img{
+        margin:-0.5em;
+        padding:0;
     }
     
     https://epicbootstrap.com/snippets/footer-dark
