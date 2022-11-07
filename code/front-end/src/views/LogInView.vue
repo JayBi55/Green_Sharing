@@ -1,28 +1,28 @@
 <template>
     <div class="login-css w-100 h-100">
-      <img src="@/assets/logo_of.jpg" alt="warning" class="logo"/>
-      <h1>Green Sharing</h1>
+      <div style="margin:2.5em" > <img src="@/assets/logo_of.jpg" alt="warning" class="logo"/></div>
+      <h1 style="bottom:2.5em" >Green Sharing</h1>
         <div class="container">
-          <hr>
-          <div class="row ms-5" >
-            <h2>Log In</h2>
-            <label for="text" class="label-css"><b>UserID</b></label>
+          <div >
+            <h2 style="color:#142530">Log In</h2>
+            <label for="text" ><b>UserID : </b></label>
             <input type="text" placeholder="Enter userId"  v-model="userId" name="userId" id="userId" required>
 
-            <label for="psw" class="label-css"><b>Password</b></label>
+            <label for="psw" ><b>Password : </b></label>
             <input type="password" placeholder="Enter Password" v-model="password" name="psw" id="psw" required>
           </div>
-          <hr>
-          <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center w-20 ms-5"  >
+            <button type="submit" class="registerbtn" @click="login()" style="margin-right:16px" >Login</button>
+            <button type="submit" class="registerbtn" @click="redirectRegister()">Register</button>
+          </div>
+          <div class="oralign"  ><p>- - OR - -</p></div>
+          <div></div><div class="d-flex justify-content-between"  >
                         <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
                         <a href="#"><img src="@/assets/gmail.png" alt="gmail" width="50px" height="50px"><i class="icon ion-social-twitter"></i></a>
                         <a href="#"><img src="@/assets/insta-logo.png" alt="insta" width="50px" height="50px"><i class="icon ion-social-instagram"></i></a>
                         <a href="#"><img src="@/assets/google.png" alt="google" width="50px" height="50px"><i class="icon ion-social-linkedin"></i></a>
           </div>
-          <div class="d-flex align-items-center w-20 ms-5">
-            <button type="submit" class="registerbtn" @click="login()" style="margin-right:16px" >Login</button>
-            <button type="submit" class="registerbtn" @click="redirectRegister()">Register</button>
-          </div>
+
           
         </div>
     </div>
@@ -95,7 +95,7 @@ h1{
 
 /* Add padding to containers */
 .container {
-  padding: 3em;
+  /* padding: 3em;
   margin-left:3em;
   max-width:530px;
   margin: 20px auto;
@@ -103,11 +103,37 @@ h1{
   text-align: left;
   padding: 20px;
   border-radius: 40px;
-  bottom:1em;
+  bottom:1em; */
+  max-width:520px;
+    margin: 30px auto;
+    background: white;
+    text-align: left;
+    padding: 40px;
+    border-radius: 15px;
+   bottom:8em;
+   
 }
+label{
+    color: #aaa;
+    display: inline-block;
+    margin:25px 0 15px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+input{
+    display: black;
+    padding:10px 6px;
+    width :100%;
+    box-sizing: border-box;
+    border:none;
+    border-bottom: 1px solid #ddd;
+    color: #555;
 
+}
 /* Full-width input fields */
-input[type=text], input[type=password] {
+/* input[type=text], input[type=password] {
   width: 90%;
   padding:25px 10px;
   margin:20px 0 15px;
@@ -125,7 +151,7 @@ input[type=text]:focus, input[type=password]:focus {
   outline: none;
   color:black;
   border-bottom: 1px solid #ddd;
-}
+} */
 
 /* Overwrite default styles of hr */
 hr {
@@ -183,5 +209,9 @@ h2{
   font-family: cursive , sans-serif;
   font-size: 3em;
 }
-
+.oralign{
+  font-size:1.5em;
+  text-align: center;
+  bottom: 0.6em;
+}
 </style>

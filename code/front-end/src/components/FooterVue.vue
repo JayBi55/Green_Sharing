@@ -22,7 +22,7 @@
                         <h4>Morgan Stanley</h4>
                         <h4>Jour de la terre</h4>
                     </div>
-                    <div class="col item social">
+                    <div class="col item social ">
                         <a href="#"><img src="@/assets/index11.png" alt="facebook" width="50px" height="50px"><i class="icon ion-social-facebook"></i></a>
                         <a href="#"><img src="@/assets/twitter1.png" alt="twitter" width="50px" height="50px"><i class="icon ion-social-twitter"></i></a>
                         <a href="#"><img src="@/assets/insta-logo.png" alt="insta" width="50px" height="50px"><i class="icon ion-social-instagram"></i></a>
