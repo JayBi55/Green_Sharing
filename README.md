@@ -8,11 +8,11 @@ Myyank Shukla <br />
 Marguerite Mireille Camara <br />
 Van Nam Vu <br />
 
-Morgan Stanley Project : https://codetogive.bemyapp.com/#/projects/636478762b5a55720fb83e7a
-Front-end Green Sharing : https://green-sharing.netlify.app/
-Back-end Green Sharing : https://greensharingapi.azurewebsites.net/swagger/index.html
-MCD-SAX-ML models Diagrams : https://app.diagrams.net/#G1J_-efr0K0X03nbX8w-cENkyHh6ZV7eTP
-Figma design : https://www.figma.com/file/TqOf0pTMOZGpH9VtUyGTqs/CGT-T11?node-id=0%3A1
+Morgan Stanley Project : https://codetogive.bemyapp.com/#/projects/636478762b5a55720fb83e7a <br />
+Front-end Green Sharing : https://green-sharing.netlify.app/ <br />
+Back-end Green Sharing : https://greensharingapi.azurewebsites.net/swagger/index.html <br />
+MCD-SAX-ML models Diagrams : https://app.diagrams.net/#G1J_-efr0K0X03nbX8w-cENkyHh6ZV7eTP <br />
+Figma design : https://www.figma.com/file/TqOf0pTMOZGpH9VtUyGTqs/CGT-T11?node-id=0%3A1 <br />
 
 ##  The Problem: 
 
@@ -49,11 +49,11 @@ Carpooling capabilities between gleaners
 **1.  FrontEnd** <br /> 
 Read the readMe_frontE in the repository **front-end** for a better understanding of this part  <br /> 
 **2.  BackEnd**  <br /> 
-Resources and requirements :
-.NET 5.0
-.ASPNetCore
-.EntityFrameWorkCore
-Azure Cloud
+Resources and requirements : <br />
+.NET 5.0 <br />
+.ASPNetCore <br />
+.EntityFrameWorkCore <br />
+Azure Cloud <br />
 
 
 
