@@ -53,7 +53,7 @@ Carpooling capabilities between gleaners
 Read the readMe_frontE in the repository **front-end** for a better understanding of this part  <br /> 
 
 **2.  BackEnd**  <br /> 
-Resources and requirements : <br />
+Resources and requirements :
 * .NET 5.0 <br />
 * .ASPNetCore <br />
 * .EntityFrameWorkCore <br />
