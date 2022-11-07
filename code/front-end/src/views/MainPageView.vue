@@ -60,7 +60,7 @@
                             <td>{{list.priority}}</td>
                             <td>{{list.products}}</td>
                             <td v-if="userStore.userType==='Benevole'">
-                                <button style="background-color:#003778; color:white">Participate</button>
+                                <button style="background-color:##142530; color:white">Participate</button>
                             </td>
                         </tr>
                     </tbody>
@@ -117,6 +117,34 @@
                 <div v-else-if="userStore.userType === 'Farmer'">
                     <FarmerTableVue/>
                 </div>
+                <div>
+                    <article class="event">
+                        <h1>Event Article</h1>
+                        <article class="event1">
+                            <h2>03 March 2022 - Marc Gragnir Event</h2>
+                            <p><b>Comment:</b>The participants had a great time and the harvest was good.</p>
+                        </article>
+                        <article class="event2">
+                            <h2>05 October 2022- Pierre Event</h2>
+                            <p><b>Comment:</b>The gleaners <b>@Marie33</b> wa so nice.</p>
+                        </article>
+                        <article class="event3">
+                            <h2>05 October 2022 - Emile Event</h2>
+                            <p><b>Comment:</b>I recommend it, it's worth it and it's for a good cause.</p>
+                        </article>
+                    </article>
+                </div>
+                <div class="stat">
+
+                    <h1>Gleaning statistics</h1>
+
+                    <div class="half-arc" style="--percentage:25%;">
+                        <span class="label">25%</span>
+                    </div>
+                    <p class="text">Here the percentage increase in gleaning in recent months.</p>
+
+                </div>
+                
             </div>
         </div>
         <FooterVue style="bottom:-100"/>
@@ -174,5 +202,128 @@ export default defineComponent({
 <style>
 .home {
     
+}
+.forecast {
+    margin: 0;
+    padding: .3rem;
+    background-color: #142530;
+    font: 1rem 'Fira Sans', sans-serif;
+    color: black;
+}
+
+.forecast > h1,
+.event1 {
+    margin: .5rem;
+    padding: .3rem;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 100px;
+}
+
+.event1{
+    background: right/contain content-box border-box no-repeat
+        url('@/assets/gleaning-image.jpg') #e0dfc8ff;
+        color:#142530 ;
+        
+}
+
+.event1 > h2,
+.event1 > p {
+    margin: .2rem;
+    font-size: 1rem;
+}
+.event2 {
+    margin: .5rem;
+    padding: .3rem;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 100px;
+}
+
+.event2{
+    background: right/contain content-box border-box no-repeat
+        url('@/assets/gleaning2.jpg') #e0dfc8ff;
+        color:#142530 ;
+        
+}
+
+.event2 > h2,
+.event2 > p {
+    margin: .2rem;
+    font-size: 1rem;
+}
+.event3 {
+    margin: .5rem;
+    padding: .3rem;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 100px;
+}
+
+.event3{
+    background: right/contain content-box border-box no-repeat
+        url('@/assets/gleaning3.jpg') #e0dfc8ff;
+        color:#142530 ;
+        
+}
+
+.event3 > h2,
+.event3 > p {
+    margin: .2rem;
+    font-size: 1rem;
+}
+
+
+.half-arc {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    border-top-left-radius: 120px;
+    border-top-right-radius: 120px;
+    border-bottom: 0;
+    background: #d9d9d9;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.half-arc:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    border-radius: 50%;
+    background-image: conic-gradient(#9c27b0, #3f51b5 calc(var(--percentage, 0) / 2), #bbb 0);
+    transition: transform .5s ease-in-out;
+    z-index: 1;
+    transform: rotate(270deg);
+}
+
+.half-arc:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #dddddd;
+    z-index: 2;
+    width: calc(100% - 32px);
+    height: calc(200% - 32px);
+    border-radius: 50%;
+    top: 16px;
+    left: 16px;
+}
+
+.half-arc span {
+    color: #673ab7;
+    z-index: 3;
+    text-align: center;
+}
+.text{
+    color: #142530;
 }
 </style>
