@@ -44,7 +44,7 @@ export default defineComponent({
 </script>
 <style>
     .footer-dark {
-        padding:50px 0;
+        padding:30px 0;
         color:#f0f9ff;
         background-color:#142530;
 
@@ -52,9 +52,21 @@ export default defineComponent({
     
     .footer-dark h3 {
         margin-top:0;
-        margin-bottom:12px;
+        margin-bottom:2em;
         font-weight:bold;
         font-size:16px;
+        color:#f0f9ff;
+        margin:10px;
+    }
+    .footer-dark h4 {
+        margin-top:0;
+        margin-bottom:0em;
+        font-weight:bold;
+        font-size:16px;
+        color:white;
+        padding-bottom: 1em;
+        margin:10px;
+       
     }
     
     .footer-dark ul {
@@ -62,7 +74,7 @@ export default defineComponent({
         list-style:none;
         line-height:1.6;
         font-size:14px;
-        margin-bottom:0;
+        margin-bottom:0em;
     }
     
     .footer-dark ul a {
@@ -78,12 +90,12 @@ export default defineComponent({
     @media (max-width:767px) {
         .footer-dark .item:not(.social) {
         text-align:center;
-        padding-bottom:20px;
+        padding-bottom:2em;
         }
     }
     
     .footer-dark .item.text {
-        margin-bottom:36px;
+        margin-bottom:3em;
     }
     
     @media (max-width:767px) {
@@ -94,7 +106,7 @@ export default defineComponent({
     
     .footer-dark .item.text p {
         opacity:0.6;
-        margin-bottom:0;
+        margin-bottom:2em;
     }
     
     .footer-dark .item.social {
@@ -109,10 +121,10 @@ export default defineComponent({
     }
     
     .footer-dark .item.social > a {
-        font-size:20px;
+        font-size:12em;
         width:36px;
         height:36px;
-        line-height:36px;
+        line-height:0em;
         display:inline-block;
         text-align:center;
         border-radius:50%;
@@ -127,16 +139,20 @@ export default defineComponent({
     }
     
     .footer-dark .copyright {
-        text-align:center;
+        text-align:center ;
         padding-top:24px;
         opacity:0.3;
         font-size:13px;
-        margin-bottom:0;
+        margin-bottom:2em;
+       
     }
     img{
         margin:-0.5em;
         padding:0;
     }
-    
+    .container{
+        align-items: center;
+        
+    }
     https://epicbootstrap.com/snippets/footer-dark
 </style>

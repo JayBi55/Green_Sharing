@@ -68,10 +68,11 @@ export default defineComponent({
 
 .ecriture {
     line-height: 18px;
-    font-size: 60px;
+    font-size: 3em;
     /*font-family: Roboto;*/
     color: white;
     font-family: cursive , sans-serif;
+    align-items: center;
 }
 
 </style>

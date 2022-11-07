@@ -1,15 +1,15 @@
 <template>
     <div class="p-4 m-2">
      <div v-if="userConnected === 'Benevole'">
-        <h2 class="mb-3">Good morning {{userStore.userName}}</h2>
+        <h2 class="mb-3" style="color:black">Good morning {{userStore.userName}}</h2>
         <div class="d-flex justify-content-between">
-            <button class="button-event">Check all event by expiration date</button>
+            <button class="button-event" style="color:black">Check all event by expiration date</button>
             <input type="search" class="search" placeholder="Search event by tag or farmer's names..."/>
         </div>
      </div>
 
      <div v-else-if="userConnected === 'Farmer'" class="row">
-        <h2 class="mb-3">Good morning {{userStore.userName}}</h2>
+        <h2 class="mb-3" style="color:black">Good morning {{userStore.userName}}</h2>
         <div class="col-8 d-flex justify-content-between">
              <button class="button-event-farmer" style="background-color: #003778;" @click="createEvent()">Create an event</button>
             <button class="button-event-farmer" style="background-color: #cc6600;">Update an event</button>
@@ -20,7 +20,7 @@
      <div v-else-if="userConnected === 'Food Banks'">
      </div>
      <div v-else class="nom-equipe">
-        <h3>Prototype dévellopé par Team 11 - MORGAN STANLEY</h3>
+        <h3 style="color:black">Prototype dévellopé par Team 11 - MORGAN STANLEY</h3>
      </div>
     </div>
 </template>

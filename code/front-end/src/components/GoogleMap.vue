@@ -1,12 +1,12 @@
 <template>
   <GoogleMap api-key="AIzaSyDOxBpHQItSgjANE4tp8f3zjDvGTIaqIqU" backgroundColor="dark" style="width: 100%;  height: 500px" :center="center" :zoom="6">
-    <Marker v-for="mark in getMarkers()" :key="mark.title" :options="{position: mark.center}" :marker="mark.color1">
+    <Marker v-for="mark in getMarkers()" :key="mark.title" style="color:black" :options="{position: mark.center}">
       <InfoWindow>
-        <div id="contet" style="background-color:{{mark.icon}}">
+        <div id="context" style="background-color:{{mark.color}}">
           <div id="siteNotice"></div>
           <h1 id="firstHeading" class="firstHeading">{{mark.title}}</h1>
           <div id="bodyContent">
-            <p v-for="text, index in mark.description" :key="index">
+            <p v-for="text, index in mark.description" :key="index" style="color:black">
               {{text}}
             </p>
             <button style="background-color:##142530; color:white">Participate</button>
